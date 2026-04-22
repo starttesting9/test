@@ -288,6 +288,24 @@ button {
   gap: 10px;
 }
 
+.dashboard-row {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.dashboard-item {
+  flex: 1;
+  min-width: 250px;
+}
+
+@media (max-width: 768px) {
+  .dashboard-row {
+    flex-direction: column;
+  }
+}
+
 </style>
 </head>
 
@@ -311,12 +329,6 @@ button {
 <button id="scrollTopBtn" class="scroll-top">↑</button>
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
-
-<div id="birthdaysBlock" style="
-  width:100%;
-  max-width:600px;
-  margin-top:10px;
-"></div>
 
 <div id="loginPage" style="
   min-height:100dvh;
@@ -636,49 +648,54 @@ function showToast(message) {
 
 <div id="dashboard" style="padding:10px; text-align:center;">
 
-  <div style="
-    display:flex;
-    justify-content:center;
-    align-items:flex-start;
-    gap:40px;
-  ">
+  <div class="dashboard-row">
 
-    <div style="text-align:center;">
-      
-      <div id="chart" style="
-        width:120px;
-        height:120px;
-        border-radius:50%;
-        position:relative;
-        margin:0 auto;
-      ">
-        <div id="chart-center" style="
-          position:absolute;
-          top:50%;
-          left:50%;
-          transform:translate(-50%, -50%);
-          text-align:center;
-          font-size:12px;
-          font-weight:bold;
+    <!-- 1. ГРАФІК -->
+    <div class="dashboard-item">
+      <div style="text-align:center;">
+        
+        <div id="chart" style="
+          width:120px;
+          height:120px;
+          border-radius:50%;
+          position:relative;
+          margin:0 auto;
         ">
-          <div id="total-count">0</div>
-          <div style="font-size:10px; font-weight:normal;">
-            <span style="color:green;" id="shps-count"></span> /
-            <span style="color:orange;" id="rozp-count"></span>
+          <div id="chart-center" style="
+            position:absolute;
+            top:50%;
+            left:50%;
+            transform:translate(-50%, -50%);
+            text-align:center;
+            font-size:12px;
+            font-weight:bold;
+          ">
+            <div id="total-count">0</div>
+            <div style="font-size:10px; font-weight:normal;">
+              <span style="color:green;" id="shps-count"></span> /
+              <span style="color:orange;" id="rozp-count"></span>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- легенда -->
-      <div style="margin-top:8px; font-size:12px; color:#555;">
-        <span style="color:green;">● <span id="label-A1"></span></span>
-        &nbsp;&nbsp;
-        <span style="color:orange;">● <span id="label-B2"></span></span>
-      </div>
+        <div style="margin-top:8px; font-size:12px; color:#555;">
+          <span style="color:green;">● <span id="label-A1"></span></span>
+          &nbsp;&nbsp;
+          <span style="color:orange;">● <span id="label-B2"></span></span>
+        </div>
 
+      </div>
     </div>
 
-    <div id="marksChart" style="width:220px;"></div>
+    <!-- 2. MARKS -->
+    <div class="dashboard-item">
+      <div id="marksChart"></div>
+    </div>
+
+    <!-- 3. ДН -->
+    <div class="dashboard-item">
+      <div id="birthdaysBlock"></div>
+    </div>
 
   </div>
 
