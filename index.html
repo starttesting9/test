@@ -507,7 +507,12 @@ function renderBirthdays(items) {
   const other = items.filter(i => !i.isToday);
 
   const todayHTML = today.length ? `
-    <div style="margin-bottom:10px;">
+    <div style="
+      margin-bottom:10px;
+      background:#fff3e0;
+      padding:8px 10px;
+      border-radius:6px;
+    ">
       <div style="font-weight:bold; color:#e67e22;">
         🎂 Сьогодні (${today.length})
       </div>
@@ -518,7 +523,13 @@ function renderBirthdays(items) {
       `).join('')}
     </div>
   ` : `
-    <div style="margin-bottom:10px; color:#777;">
+    <div style="
+      margin-bottom:10px;
+      background:#f8f9fa;
+      padding:8px 10px;
+      border-radius:6px;
+      color:#777;
+    ">
       🎂 Сьогодні  
       <span style="color:#999;">немає 🎉</span>
     </div>
