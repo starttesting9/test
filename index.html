@@ -312,6 +312,12 @@ button {
 
 <script src="https://accounts.google.com/gsi/client" async defer></script>
 
+<div id="birthdaysBlock" style="
+  width:100%;
+  max-width:600px;
+  margin-top:10px;
+"></div>
+
 <div id="loginPage" style="
   min-height:100dvh;
   display:flex;
@@ -385,6 +391,19 @@ function updateDashboard(items) {
   document.getElementById('total-count').innerText = total;
   document.getElementById('shps-count').innerText = shps;
   document.getElementById('rozp-count').innerText = rozp;
+}
+
+function groupBirthdays(items) {
+  const map = {};
+
+  items.forEach(i => {
+    if (!map[i.date]) {
+      map[i.date] = [];
+    }
+    map[i.date].push(i);
+  });
+
+  return map;
 }
 
 function handleCredentialResponse(response) {
@@ -474,6 +493,60 @@ function renderMarksChart(counts) {
       `;
     })
     .join('');
+}
+
+function renderBirthdays(items) {
+  const container = document.getElementById('birthdaysBlock');
+
+  if (!items || items.length === 0) {
+    container.innerHTML = '';
+    return;
+  }
+
+  const grouped = groupBirthdays(items);
+
+  const html = Object.entries(grouped)
+    .map(([date, list]) => {
+      const isToday = list.some(i => i.isToday);
+
+      return `
+        <div style="
+          background:white;
+          padding:10px;
+          border-radius:8px;
+          margin-bottom:8px;
+          box-shadow:0 2px 5px rgba(0,0,0,0.1);
+        ">
+          <div style="
+            font-weight:bold;
+            margin-bottom:6px;
+            color:${isToday ? '#e67e22' : '#2c3e50'};
+          ">
+            ${isToday ? '🟠 СЬОГОДНІ' : '📅 ' + date}
+            (${list.length})
+          </div>
+
+          ${list.map(p => `
+            <div style="
+              font-size:14px;
+              margin-left:6px;
+            ">
+              ${p.pib}
+            </div>
+          `).join('')}
+        </div>
+      `;
+    })
+    .join('');
+
+  container.innerHTML = `
+    <div class="dash-card" style="width:100%;">
+      🎂 Найближчі дні народження
+      <div style="margin-top:8px;">
+        ${html}
+      </div>
+    </div>
+  `;
 }
 
 function highlightSZCH(text) {
@@ -799,6 +872,7 @@ async function loadData(token) {
     render(currentData.slice(0, visibleCount));
     updateDashboard(data);
     updateMarksChart(data);
+    renderBirthdays(result.birthdays);
 
   } catch (e) {
     console.error(e);
