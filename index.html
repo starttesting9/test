@@ -296,8 +296,8 @@ button {
 }
 
 .dashboard-item {
-  flex: 1;
-  min-width: 250px;
+  flex: 1 1 0;
+  min-width: 0;
 }
 
 @media (max-width: 768px) {
@@ -722,7 +722,7 @@ function showToast(message) {
 
     <!-- 2. MARKS -->
     <div class="dashboard-item">
-      <div id="marksChart"></div>
+      <div id="marksChart" style="width:100%; max-width:250px; margin:0 auto;"></div>
     </div>
 
     <!-- 3. ДН -->
