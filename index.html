@@ -156,7 +156,7 @@ input {
 }
 
 .card-label {
-  position: absolute;
+  position: static;
   top: 8px;
   right: 10px;
   background: #ecf0f1;
@@ -168,10 +168,19 @@ input {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  flex-shrink: 0;
 }
 
 .card-label.szch {
   background: #e74c3c;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 
 .scroll-top {
@@ -201,7 +210,7 @@ input {
   width: 100%;
 }
 
-.name { font-size:17px; font-weight:bold; margin-bottom:2px;}
+.name { font-size:17px; font-weight:bold; margin-bottom:2px; flex: 1; word-break: break-word;}
 
 .status { margin-top:5px; font-weight:bold; }
 .status[data-status="A1"] { color:green; }
@@ -603,26 +612,28 @@ function render(items, append = false) {
     const labelData = getCardLabel(item);
 
     div.innerHTML = `
-      ${labelData ? `
-        <div class="card-label ${labelData.isSZCH ? 'szch' : ''}">
-          ${labelData.text}
-        </div>
-      ` : ''}
-      <div class="name">${item.pib}</div>
+      <div class="card-header">
+        <div class="name">${item.pib}</div>
+        ${labelData ? `
+          <div class="card-label ${labelData.isSZCH ? 'szch' : ''}">
+            ${labelData.text}
+          </div>
+        ` : ''}
+      </div>
+    
       <div>${FIELD_LABELS['f12']}: ${item.f12}</div>
       <div>${FIELD_LABELS['f13']}: ${item.f13}</div>
       <div class="status" data-status="${item.status}">
         ${STATUS_LABELS[item.status] || item.status}
       </div>
-
+    
       <div style="display:flex; gap:10px;">
         <button onclick="toggle(this)">Детальніше</button>
         <button class="copy-all-btn" style="display:none;">📋 Копіювати</button>
       </div>
-
+    
       <div class="details"></div>
     `;
-
     list.appendChild(div);
   });
 }
