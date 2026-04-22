@@ -334,6 +334,31 @@ button {
   }
 }
 
+.bd-header {
+  cursor: pointer;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.bd-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.bd-arrow {
+  font-size: 12px;
+  transition: transform 0.2s ease;
+}
+
+.bd-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
 </style>
 </head>
 
@@ -602,24 +627,19 @@ function renderBirthdays(items) {
       margin-bottom:6px;
     ">
   
-      <div onclick="toggleDay(this)" style="
-        cursor:pointer;
-        font-weight:600;
-        display:flex;
-        justify-content:space-between;
-        align-items:center;
-      ">
-        <span>📅 ${rangeTitle}</span>
-        <span style="color:#aaa;">▼</span>
-        <span style="color:#888;">${other.length}</span>
+      <div onclick="toggleDay(this)" class="bd-header">
+        <div class="bd-left">
+          📅 ${rangeTitle}
+        </div>
+      
+        <div class="bd-right">
+          <span class="bd-count">${other.length}</span>
+          <span class="bd-arrow">▼</span>
+        </div>
       </div>
-  
-      <div style="
-        display:none;
-        margin-top:6px;
-        font-size:13px;
-      ">
-  
+      
+      <div class="bd-content">
+
       ${dates.map(date => {
         const list = grouped[date];
         return `
@@ -634,8 +654,6 @@ function renderBirthdays(items) {
         `;
       }).join('')}
   
-      </div>
-  
     </div>
   `;
 
@@ -648,8 +666,16 @@ function renderBirthdays(items) {
 }
 
 function toggleDay(el) {
-  const next = el.nextElementSibling;
-  next.style.display = next.style.display === 'none' ? 'block' : 'none';
+  const content = el.nextElementSibling;
+  const arrow = el.querySelector('.bd-arrow');
+
+  if (content.style.maxHeight) {
+    content.style.maxHeight = null;
+    arrow.style.transform = 'rotate(0deg)';
+  } else {
+    content.style.maxHeight = content.scrollHeight + 'px';
+    arrow.style.transform = 'rotate(180deg)';
+  }
 }
 
 function highlightSZCH(text) {
