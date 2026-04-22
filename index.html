@@ -519,27 +519,44 @@ function renderBirthdays(items) {
     </div>
   ` : `
     <div style="margin-bottom:10px; color:#777;">
-      🎂 Сьогодні немає 🎉
+      🎂 Сьогодні  
+      <span style="color:#999;">немає 🎉</span>
     </div>
   `;
 
   const grouped = groupBirthdays(other);
 
-  const otherHTML = Object.entries(grouped).sort((a, b) => a[1][0].sort - b[1][0].sort)
-    .map(([date, list]) => `
-      <div style="margin-bottom:6px;">
-        <div onclick="toggleDay(this)" style="
-          cursor:pointer;
-          font-weight:600;
-        ">
-          📅 ${date} (${list.length})
-        </div>
+const otherHTML = Object.entries(grouped)
+  .map(([date, list]) => `
+    <div style="
+      background:#f8f9fa;
+      padding:8px 10px;
+      border-radius:6px;
+      margin-bottom:6px;
+    ">
 
-        <div style="display:none; margin-left:8px;">
-          ${list.map(p => `<div>${p.pib}</div>`).join('')}
-        </div>
+      <div onclick="toggleDay(this)" style="
+        cursor:pointer;
+        font-weight:600;
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+      ">
+        <span>📅 ${date}</span>
+        <span style="color:#888;">${list.length}</span>
       </div>
-    `).join('');
+
+      <div style="
+        display:none;
+        margin-top:6px;
+        margin-left:6px;
+        font-size:13px;
+      ">
+        ${list.map(p => `<div>${p.pib}</div>`).join('')}
+      </div>
+
+    </div>
+  `).join('');
 
   container.innerHTML = `
     <div class="dash-card">
@@ -547,6 +564,11 @@ function renderBirthdays(items) {
       ${otherHTML}
     </div>
   `;
+}
+
+function toggleDay(el) {
+  const next = el.nextElementSibling;
+  next.style.display = next.style.display === 'none' ? 'block' : 'none';
 }
 
 function highlightSZCH(text) {
