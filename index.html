@@ -367,9 +367,9 @@ button {
 }
 
 .bd-content {
-  max-height: 0;
+  height: 0;
   overflow: hidden;
-  transition: max-height 0.3s ease;
+  transition: height 0.3s ease;
 }
 
 .bd-name {
@@ -712,18 +712,22 @@ function toggleDay(el) {
 
   const isDesktop = window.innerWidth >= 769;
 
-  if (content.style.maxHeight) {
-    content.style.maxHeight = null;
+  if (content.classList.contains('open')) {
+    content.style.height = '0px';
+    content.classList.remove('open');
     arrow.style.transform = 'rotate(0deg)';
   } else {
     const fullHeight = content.scrollHeight;
 
     if (isDesktop) {
-      content.style.maxHeight = Math.min(fullHeight, 220) + 'px';
+      content.style.height = '220px';  // 🔥 фіксована висота
+      content.style.overflowY = 'auto';
     } else {
-      content.style.maxHeight = fullHeight + 'px';
+      content.style.height = fullHeight + 'px';
+      content.style.overflowY = 'hidden';
     }
 
+    content.classList.add('open');
     arrow.style.transform = 'rotate(180deg)';
   }
 }
