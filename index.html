@@ -375,9 +375,10 @@ button {
 .bd-content {
   height: 0;
   overflow: hidden;
-  transition: height 0.3s ease;
+  transition: height 0.25s ease;
   text-align: left;
-  padding-top: 6px;
+  padding-top: 0;
+  padding-bottom: 0;
 }
 
 .bd-content > div {
@@ -736,22 +737,26 @@ function toggleDay(el) {
   const content = el.nextElementSibling;
   const arrow = el.querySelector('.bd-arrow');
 
-  const isDesktop = window.innerWidth >= 769;
+  const isOpen = content.classList.contains('open');
 
-  if (content.classList.contains('open')) {
-    content.style.height = '0px';
+  if (isOpen) {
+    content.style.height = content.scrollHeight + 'px';
+
+    requestAnimationFrame(() => {
+      content.style.height = '0px'; 
+    });
+
     content.classList.remove('open');
     arrow.style.transform = 'rotate(0deg)';
+
   } else {
     const fullHeight = content.scrollHeight;
 
-    if (isDesktop) {
-      content.style.height = '220px';  // 🔥 фіксована висота
-      content.style.overflowY = 'auto';
-    } else {
-      content.style.height = fullHeight + 'px';
-      content.style.overflowY = 'hidden';
-    }
+    content.style.height = '0px';
+
+    requestAnimationFrame(() => {
+      content.style.height = Math.min(fullHeight, 220) + 'px';
+    });
 
     content.classList.add('open');
     arrow.style.transform = 'rotate(180deg)';
