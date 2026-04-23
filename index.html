@@ -677,39 +677,31 @@ function renderBirthdays(items) {
   const other = items.filter(i => !i.isToday);
 
   const todayHTML = today.length ? `
-    <div style="
-      margin-bottom:10px;
-      background:#fff3e0;
-      padding:8px 10px;
-      border-radius:6px;
-    ">
-      <div style="font-weight:bold; color:#e67e22;">
-        🎂 Сьогодні (${today.length})
+  <div class="today-block">
+
+    <div class="today-title">
+      🎂 Сьогодні (${today.length})
+    </div>
+
+    ${today.slice(0, 5).map(p => `
+      <div class="today-item">
+        <span class="today-dot"></span>
+        <span>${p.pib}</span>
       </div>
-      ${today.slice(0, 5).map(p => `
-        <div style="color:#e67e22; margin-left:6px;">
-          🟠 ${p.pib}
-        </div>
-      `).join('')}
-      
-      ${today.length > 5 ? `
-        <div style="color:#999; margin-left:6px;">
-          + ще ${today.length - 5}
-        </div>
-      ` : ''}
-    </div>
-  ` : `
-    <div style="
-      margin-bottom:10px;
-      background:#f8f9fa;
-      padding:8px 10px;
-      border-radius:6px;
-      color:#777;
-    ">
-      🎂 Сьогодні  
-      <span style="color:#999;">немає 🎉</span>
-    </div>
-  `;
+    `).join('')}
+
+    ${today.length > 5 ? `
+      <div class="today-more">
+        + ще ${today.length - 5}
+      </div>
+    ` : ''}
+
+  </div>
+` : `
+  <div class="today-empty">
+    🎂 Сьогодні немає 🎉
+  </div>
+`;
 
   const grouped = groupBirthdays(other);
 
