@@ -332,6 +332,17 @@ button {
   .dashboard-item:nth-child(3) {
     flex: 2 1 0;
   }
+
+  #birthdaysBlock .dash-card {
+    max-height: 320px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .bd-content {
+    overflow-y: auto;
+  }
 }
 
 .bd-header {
@@ -693,7 +704,7 @@ function toggleDay(el) {
     content.style.maxHeight = null;
     arrow.style.transform = 'rotate(0deg)';
   } else {
-    content.style.maxHeight = content.scrollHeight + 'px';
+    content.style.maxHeight = '200px';
     arrow.style.transform = 'rotate(180deg)';
   }
 }
