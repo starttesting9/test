@@ -741,23 +741,25 @@ function toggleDay(el) {
 
   if (isOpen) {
     content.style.height = content.scrollHeight + 'px';
-
+  
     requestAnimationFrame(() => {
-      content.style.height = '0px'; 
+      content.style.height = '0px';
+      content.style.overflowY = 'hidden';   // 🔥 ДОДАТИ
     });
-
+  
     content.classList.remove('open');
     arrow.style.transform = 'rotate(0deg)';
-
+  
   } else {
     const fullHeight = content.scrollHeight;
-
+  
     content.style.height = '0px';
-
+  
     requestAnimationFrame(() => {
       content.style.height = Math.min(fullHeight, 220) + 'px';
+      content.style.overflowY = 'auto';     // 🔥 ДОДАТИ
     });
-
+  
     content.classList.add('open');
     arrow.style.transform = 'rotate(180deg)';
   }
