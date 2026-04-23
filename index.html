@@ -342,6 +342,7 @@ button {
 
   .bd-content {
     overflow-y: auto;
+    padding-right: 4px;
   }
 }
 
@@ -386,6 +387,15 @@ button {
   margin: 8px 0 4px;
   padding-bottom: 2px;
   border-bottom: 1px solid #eee;
+}
+
+.bd-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.bd-content::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
 }
 
 </style>
@@ -700,11 +710,18 @@ function toggleDay(el) {
   const content = el.nextElementSibling;
   const arrow = el.querySelector('.bd-arrow');
 
+  const isDesktop = window.innerWidth >= 769;
+
   if (content.style.maxHeight) {
     content.style.maxHeight = null;
     arrow.style.transform = 'rotate(0deg)';
   } else {
-    content.style.maxHeight = '200px';
+    if (isDesktop) {
+      content.style.maxHeight = '220px';
+    } else {
+      content.style.maxHeight = content.scrollHeight + 'px';
+    }
+
     arrow.style.transform = 'rotate(180deg)';
   }
 }
