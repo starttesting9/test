@@ -293,13 +293,17 @@ button {
   gap: 10px;
   align-items: stretch;
   flex-wrap: wrap;
-  width: 100%;
-  max-width: 1200px;
 }
 
 .dashboard-item {
   flex: 1 1 0;
   min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: stretch; 
+  justify-content: flex-start;
 }
 
 @media (max-width: 768px) {
