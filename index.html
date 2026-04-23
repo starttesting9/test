@@ -670,30 +670,32 @@ function renderBirthdays(items) {
         <div class="bd-left">
           📅 ${rangeTitle}
         </div>
-      
+  
         <div class="bd-right">
           <span class="bd-count">${other.length}</span>
           <span class="bd-arrow">▼</span>
         </div>
       </div>
-      
+  
       <div class="bd-content">
-
-      ${dates.map(date => {
-        const list = grouped[date];
-        return `
-          <div style="margin-bottom:6px;">
-            <div class="bd-date">
-              ${date}
-            </div>
-            ${list.map(p => `
-              <div class="bd-name">
-                ${p.pib}
+  
+        ${dates.map(date => {
+          const list = grouped[date];
+          return `
+            <div style="margin-bottom:6px;">
+              <div class="bd-date">
+                ${date}
               </div>
-            `).join('')}
-          </div>
-        `;
-      }).join('')}
+              ${list.map(p => `
+                <div class="bd-name">
+                  ${p.pib}
+                </div>
+              `).join('')}
+            </div>
+          `;
+        }).join('')}
+  
+      </div>
   
     </div>
   `;
