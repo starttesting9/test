@@ -476,6 +476,12 @@ button {
   padding: 10px 12px;
   border-radius: 8px;
   margin-bottom: 8px;
+  margin-top: 0;
+}
+
+.today-block.expanded {
+  max-height: 160px;
+  overflow-y: auto;
 }
 
 </style>
@@ -784,9 +790,10 @@ function renderBirthdays(items) {
 function expandToday(el) {
   const block = el.closest('.today-block');
 
-  const hidden = block.querySelectorAll('.today-hidden');
+  block.classList.add('expanded');
 
-  hidden.forEach(el => el.style.display = 'flex');
+  const hidden = block.querySelectorAll('.today-hidden');
+  hidden.forEach(item => item.style.display = 'flex');
 
   el.remove();
 }
