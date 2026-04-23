@@ -357,6 +357,24 @@ button {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
+  font-size: 13px;
+  line-height: 1.4;
+  text-align: left;
+}
+
+.bd-name {
+  font-weight: normal;
+  color: #333;
+  margin-left: 6px;
+  margin-bottom: 2px;
+}
+
+.bd-date {
+  font-weight: 600;
+  font-size: 13px;
+  margin: 8px 0 4px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid #eee;
 }
 
 </style>
@@ -644,9 +662,11 @@ function renderBirthdays(items) {
         const list = grouped[date];
         return `
           <div style="margin-bottom:6px;">
-            <div style="font-weight:600;">${date}</div>
+            <div class="bd-date">
+              ${date}
+            </div>
             ${list.map(p => `
-              <div style="margin-left:8px;">
+              <div class="bd-name">
                 ${p.pib}
               </div>
             `).join('')}
