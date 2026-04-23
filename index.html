@@ -497,6 +497,10 @@ button {
   font-weight: 600;
 }
 
+.today-list {
+  margin-top: 6px;
+}
+
 </style>
 </head>
 
@@ -713,16 +717,18 @@ function renderBirthdays(items) {
   <div class="today-block">
 
     <div class="today-title">
-      🎂 Сьогодні (${today.length})
+      ⭐ Сьогодні (${today.length})
     </div>
 
-    ${today.map((p, i) => `
-      <div class="today-item ${i >= 3 ? 'today-hidden' : ''}"
-           style="${i >= 3 ? 'display:none;' : ''}">
-        <span class="today-dot"></span>
-        <span>${p.pib}</span>
-      </div>
-    `).join('')}
+    <div class="today-list">
+      ${today.map((p, i) => `
+        <div class="today-item ${i >= 3 ? 'today-hidden' : ''}"
+             style="${i >= 3 ? 'display:none;' : ''}">
+          <span class="today-dot"></span>
+          <span>${p.pib}</span>
+        </div>
+      `).join('')}
+    </div>
     
     ${today.length > 3 ? `
       <div class="today-more" onclick="expandToday(this)">
@@ -733,7 +739,7 @@ function renderBirthdays(items) {
   </div>
 ` : `
   <div class="today-empty">
-    🎂 Сьогодні немає 🎉
+    Сьогодні немає 🎉
   </div>
 `;
 
