@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://cdn.tailwindcss.com"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -804,7 +805,7 @@ function renderBirthdays(items) {
   `;
 
   container.innerHTML = `
-    <div class="dash-card">
+    <div class="dash-card bg-white rounded-xl shadow-md p-3 hover:shadow-lg transition-all duration-200">
       ${todayHTML}
       ${otherHTML}
     </div>
@@ -898,7 +899,7 @@ function showToast(message) {
 
 <div id="app" style="display:none;">
 
-<div class="header"></div>
+<div class="header bg-slate-800 text-white py-3 text-sm font-medium tracking-wide"></div>
 
 <div id="dashboard" style="padding:10px; text-align:center;">
 
@@ -956,7 +957,8 @@ function showToast(message) {
 </div>
 
 <div class="search-wrapper">
-  <input type="text" id="search" placeholder="Пошук...">
+  <input type="text" id="search" placeholder="Пошук..."
+    class="w-full p-3 rounded-xl border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 transition">
   <span id="clearSearch">✖</span>
 </div>
 
@@ -990,7 +992,7 @@ function render(items, append = false) {
 
   items.forEach((item) => {
     const div = document.createElement('div');
-    div.className = 'card';
+    div.className = 'card bg-white rounded-xl shadow-sm hover:shadow-md transition p-3';
     div.dataset.index = currentData.indexOf(item);
     const labelData = getCardLabel(item);
 
