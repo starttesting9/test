@@ -685,15 +685,16 @@ function renderBirthdays(items) {
       🎂 Сьогодні (${today.length})
     </div>
 
-    ${today.slice(0, 5).map(p => `
-      <div class="today-item">
+    ${today.map((p, i) => `
+      <div class="today-item ${i >= 5 ? 'today-hidden' : ''}"
+           style="${i >= 5 ? 'display:none;' : ''}">
         <span class="today-dot"></span>
         <span>${p.pib}</span>
       </div>
     `).join('')}
-
+    
     ${today.length > 5 ? `
-      <div class="today-more">
+      <div class="today-more" onclick="expandToday(this)">
         + ще ${today.length - 5}
       </div>
     ` : ''}
@@ -766,6 +767,16 @@ function renderBirthdays(items) {
       ${otherHTML}
     </div>
   `;
+}
+
+function expandToday(el) {
+  const block = el.closest('.today-block');
+
+  const hidden = block.querySelectorAll('.today-hidden');
+
+  hidden.forEach(el => el.style.display = 'flex');
+
+  el.remove();
 }
 
 function toggleDay(el) {
