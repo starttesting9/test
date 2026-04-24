@@ -254,6 +254,7 @@ button {
   border-radius: 8px;
   box-shadow: 0 2px 5px rgba(0,0,0,0.1);
   font-weight: bold;
+  width: 100%;
 }
 
 .g_id_signin {
@@ -296,7 +297,7 @@ button {
 
 .dashboard-row {
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: flex-start;
   flex-wrap: wrap;
 }
@@ -336,24 +337,15 @@ button {
   }
 
   .dashboard-item:nth-child(1) {
-    flex: 1 1 0;
+    flex: 1;
   }
 
   .dashboard-item:nth-child(2) {
-    flex: 1.5 1 0;
+    flex: 1.4;
   }
 
   .dashboard-item:nth-child(3) {
-    flex: 2 1 0;
-  }
-
-  .dashboard-item {
-    align-items: center;     
-  }
-
-  .dashboard-item .dash-card {
-    width: 100%;
-    max-width: 320px;
+    flex: 1.6;
   }
 
   .dashboard-item > * {
