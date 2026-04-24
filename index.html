@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="ui.css">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -719,13 +720,13 @@ function renderBirthdays(items) {
   const other = items.filter(i => !i.isToday);
 
   const todayHTML = today.length ? `
-  <div class="today-block">
+  <div class="today-block ui-today">
 
     <div class="today-title">
       ⭐ Сьогодні (${today.length})
     </div>
 
-    <div class="today-list">
+    <div class="today-list ui-list">
       ${today.map((p, i) => `
         <div class="today-item ${i >= 3 ? 'today-hidden' : ''}"
              style="${i >= 3 ? 'display:none;' : ''}">
@@ -779,7 +780,7 @@ function renderBirthdays(items) {
         </div>
       </div>
   
-      <div class="bd-content">
+      <div class="bd-content ui-scroll">
   
         ${dates.map(date => {
           const list = grouped[date];
@@ -789,7 +790,7 @@ function renderBirthdays(items) {
                 ${date}
               </div>
               ${list.map(p => `
-                <div class="bd-name">
+                <div class="bd-name ui-item">
                   ${p.pib}
                 </div>
               `).join('')}
@@ -803,7 +804,7 @@ function renderBirthdays(items) {
   `;
 
   container.innerHTML = `
-    <div class="dash-card">
+    <div class="dash-card ui-card">
       ${todayHTML}
       ${otherHTML}
     </div>
