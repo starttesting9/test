@@ -470,7 +470,14 @@ button {
 }
 
 .today-list {
-  margin-top: 6px;
+  max-height: none;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.today-list.open {
+  max-height: 180px; 
+  overflow-y: auto;
 }
 
 </style>
@@ -778,11 +785,12 @@ function renderBirthdays(items) {
 
 function expandToday(el) {
   const block = el.closest('.today-block');
-
-  block.classList.add('expanded');
+  const list = block.querySelector('.today-list');
 
   const hidden = block.querySelectorAll('.today-hidden');
   hidden.forEach(item => item.style.display = 'flex');
+
+  list.classList.add('open');
 
   el.remove();
 }
@@ -798,7 +806,7 @@ function toggleDay(el) {
   
     requestAnimationFrame(() => {
       content.style.height = '0px';
-      content.style.overflowY = 'hidden';   // 🔥 ДОДАТИ
+      content.style.overflowY = 'hidden';  
     });
   
     content.classList.remove('open');
@@ -811,7 +819,7 @@ function toggleDay(el) {
   
     requestAnimationFrame(() => {
       content.style.height = Math.min(fullHeight, 220) + 'px';
-      content.style.overflowY = 'auto';     // 🔥 ДОДАТИ
+      content.style.overflowY = 'auto';   
     });
   
     content.classList.add('open');
