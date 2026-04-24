@@ -331,6 +331,8 @@ button {
   .dashboard-row {
     gap: 20px;
     padding: 0 10px;
+
+    align-items: stretch;  
   }
 
   .dashboard-item:nth-child(1) {
@@ -343,6 +345,14 @@ button {
 
   .dashboard-item:nth-child(3) {
     flex: 2 1 0;
+  }
+
+  .dashboard-item {
+    display: flex;     
+  }
+
+  .dashboard-item > * {
+    width: 100%;      
   }
 
   #birthdaysBlock .dash-card {
