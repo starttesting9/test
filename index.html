@@ -339,7 +339,6 @@ button {
     align-items: start;
   }
   .today-list.open::-webkit-scrollbar-thumb,
-  .bd-content::-webkit-scrollbar-thumb,
   .bd-content::-webkit-scrollbar-thumb {
     background: transparent;
     transition: background 0.25s ease;
@@ -1066,11 +1065,7 @@ let CHEVRON = '';
 // рендер
 function render(items, append = false) {
   const list = document.getElementById('list');
-  const labelData = getCardLabel(item);
-
-  const showChevron =
-    item.status === 'A1' &&
-    String(item?.all?.f11 || '').toLowerCase() !== 'сзч';
+  
 
   if (!append) {
     list.innerHTML = '';
@@ -1081,6 +1076,9 @@ function render(items, append = false) {
     div.className = 'card';
     div.dataset.index = currentData.indexOf(item);
     const labelData = getCardLabel(item);
+    const showChevron =
+      item.status === 'A1' &&
+      String(item?.all?.f11 || '').toLowerCase() !== 'сзч';
 
     div.innerHTML = `
       ${showChevron ? `
