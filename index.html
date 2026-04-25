@@ -330,6 +330,11 @@ button {
   .dashboard-item:last-child {
     border-right: none;
   }
+
+  .card-chevron{
+    width:36px;
+    height:42px;
+  }
 }
 
 /* 💻 ПК */
@@ -1249,6 +1254,10 @@ async function loadData(token) {
     FIELD_ORDER = result.meta?.order || [];
     MARKS = result.meta?.marks || [];
     CHEVRON = result.assets?.chevron || '';
+
+    if (CHEVRON) {
+      new Image().src = CHEVRON;
+    }
 
     document.getElementById('label-A1').innerText =
       STATUS_LABELS['A1'] || 'A1';
