@@ -494,6 +494,19 @@ button {
   overflow-y: auto;
 }
 
+.today-list.open::-webkit-scrollbar {
+  width: 6px;
+}
+
+.today-list.open::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+.today-list.open::-webkit-scrollbar-track {
+  background: transparent;
+}
+
 .today-title {
   margin-bottom: 6px;
 }
@@ -722,7 +735,7 @@ function renderBirthdays(items) {
   <div class="today-block ui-today">
 
     <div class="today-title">
-      ⭐ Сьогодні (${today.length})
+      🥳 Сьогодні (${today.length})
     </div>
 
     <div class="today-list ui-list">
@@ -931,7 +944,15 @@ function showToast(message) {
           </div>
         </div>
 
-        <div style="margin-top:8px; font-size:12px; color:#555;">
+        <div style="
+            margin-top:8px;
+            font-size:12px;
+            color:#555;
+            display:flex;
+            flex-direction:column;
+            gap:4px;
+            align-items:center;
+          ">
           <span style="color:green;">● <span id="label-A1"></span></span>
           &nbsp;&nbsp;
           <span style="color:orange;">● <span id="label-B2"></span></span>
