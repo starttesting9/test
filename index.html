@@ -338,6 +338,15 @@ button {
     grid-template-columns: 1fr 1.3fr 1.7fr;
     align-items: start;
   }
+  .today-list.open::-webkit-scrollbar-thumb,
+  .bd-content::-webkit-scrollbar-thumb {
+    background: transparent;
+    transition: background 0.25s ease;
+  }
+
+  .show-scroll::-webkit-scrollbar-thumb {
+    background: #ccc !important;
+  }
 }
   
 .bd-header {
@@ -899,6 +908,26 @@ function toggleDay(el) {
   }
 }
 
+function initAutoHideScroll() {
+  if (window.innerWidth < 769) return;
+
+  const blocks = document.querySelectorAll('.today-list.open, .bd-content');
+
+  blocks.forEach(block => {
+    let timer;
+
+    block.addEventListener('scroll', () => {
+      block.classList.add('show-scroll');
+
+      clearTimeout(timer);
+
+      timer = setTimeout(() => {
+        block.classList.remove('show-scroll');
+      }, 900);
+    });
+  });
+}
+
 function highlightSZCH(text) {
   if (!text) return text;
 
@@ -1237,6 +1266,7 @@ async function loadData(token) {
     updateDashboard(data);
     updateMarksChart(data);
     renderBirthdays(result.birthdays);
+    initAutoHideScroll();
 
   } catch (e) {
     console.error(e);
