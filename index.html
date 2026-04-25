@@ -372,7 +372,9 @@ button {
   text-align: left;
   padding-top: 0;
   padding-bottom: 0;
+  padding-right: 6px;
   border-radius: 6px;
+  box-sizing: border-box;
 }
 
 .bd-content > div {
@@ -804,7 +806,7 @@ function renderBirthdays(items) {
   const otherHTML = `
     <div style="
       background:transparent;
-      padding:8px 2px 4px;
+      padding:8px 6px 4px;
     ">
   
       <div onclick="toggleDay(this)" class="bd-header">
@@ -818,7 +820,7 @@ function renderBirthdays(items) {
         </div>
       </div>
   
-      <div class="bd-content ui-scroll" style="padding-right:2px;">
+      <div class="bd-content ui-scroll">
   
         ${dates.map(date => {
           const list = grouped[date];
