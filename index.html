@@ -423,11 +423,6 @@ button {
   width: 5px;
 }
 
-/* .bd-content::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 4px;
-} */
-
 .today-item {
   display: flex;
   align-items: flex-start;
@@ -515,11 +510,6 @@ button {
   width: 5px;
 }
 
-/* .today-list.open::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-} */
-
 .today-list.open::-webkit-scrollbar-track {
   background: transparent;
 }
@@ -550,17 +540,25 @@ button {
   width: 5px;
 }
 
-/* .ui-scroll::-webkit-scrollbar-thumb {
-  background: #ccc;
-  border-radius: 10px;
-} */
-
 #marksChart > div {
   margin-bottom: 5px !important;
 }
 
 #marksChart div:first-child {
   font-weight: 500;
+}
+
+.card-chevron{
+  position:absolute;
+  right:14px;
+  bottom:14px;
+  width:48px;
+  height:56px;
+  opacity:.14;
+  background-size:contain;
+  background-repeat:no-repeat;
+  background-position:center;
+  pointer-events:none;
 }
 
 </style>
@@ -1063,10 +1061,16 @@ let visibleCount = 30;
 let STATUS_LABELS = {};
 let FIELD_LABELS = {};
 let FIELD_ORDER = [];
+let CHEVRON = '';
 
 // рендер
 function render(items, append = false) {
   const list = document.getElementById('list');
+  const labelData = getCardLabel(item);
+
+  const showChevron =
+    item.status === 'A1' &&
+    String(item?.all?.f11 || '').toLowerCase() !== 'сзч';
 
   if (!append) {
     list.innerHTML = '';
@@ -1079,6 +1083,12 @@ function render(items, append = false) {
     const labelData = getCardLabel(item);
 
     div.innerHTML = `
+      ${showChevron ? `
+        <div
+          class="card-chevron"
+          style="background-image:url('${CHEVRON}')">
+        </div>
+      ` : ''}
       <div class="card-header">
         <div class="name">${item.pib}</div>
         ${labelData ? `
@@ -1241,6 +1251,7 @@ async function loadData(token) {
     FIELD_LABELS = result.meta?.fields || {};
     FIELD_ORDER = result.meta?.order || [];
     MARKS = result.meta?.marks || [];
+    CHEVRON = result.assets?.chevron || '';
 
     document.getElementById('label-A1').innerText =
       STATUS_LABELS['A1'] || 'A1';
