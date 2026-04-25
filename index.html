@@ -313,7 +313,8 @@ button {
 }
 
 .dashboard-item:hover {
-  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
 /* 📱 мобілка */
@@ -447,9 +448,10 @@ button {
   margin-top: 6px;
   margin-left: 16px;
   font-size: 12px;
-  color: #888;
+  color: #b26a00;
   cursor: pointer;        
   user-select: none;
+  font-weight: 600;
 }
 
 .today-more:hover {
@@ -490,6 +492,18 @@ button {
 .today-list.open {
   max-height: 180px; 
   overflow-y: auto;
+}
+
+.today-title {
+  margin-bottom: 6px;
+}
+
+#marksChart > div {
+  margin-bottom: 10px !important;
+}
+
+#marksChart div:first-child {
+  font-weight: 600;
 }
 
 </style>
