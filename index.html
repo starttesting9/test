@@ -552,12 +552,10 @@ button {
   right:12px;
   bottom:12px;
   width:30px;
-  height:35px;
-  opacity:.07;
-  background-size:contain;
-  background-repeat:no-repeat;
-  background-position:center;
+  height:auto;
+  opacity:.10;
   pointer-events:none;
+  user-select:none;
 }
 
 </style>
@@ -1082,10 +1080,10 @@ function render(items, append = false) {
 
     div.innerHTML = `
       ${showChevron ? `
-        <div
+        <img
           class="card-chevron"
-          style="background-image:url('${CHEVRON}')">
-        </div>
+          src="${CHEVRON}"
+          alt="">
       ` : ''}
       <div class="card-header">
         <div class="name">${item.pib}</div>
