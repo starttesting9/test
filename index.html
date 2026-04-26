@@ -29,12 +29,21 @@
 }
 
 .loader-text{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  min-height:70px;
+
   font-size:15px;
   color:#555;
   letter-spacing:.2px;
   text-align:center;
   line-height:1.45;
-  min-height:64px;
+}
+
+.loader-text small{
+  margin-top:4px;
 }
 
 @keyframes spin{
