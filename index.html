@@ -78,6 +78,17 @@ body {
   background:#f5f5f5;
 }
 
+.app-shell{
+  width:100%;
+}
+
+@media (min-width: 1100px){
+  .app-shell{
+    max-width: 1280px;
+    margin: 0 auto;
+  }
+}
+
 html, body {
   max-width: 100%;
   overflow-x: hidden;
@@ -1003,6 +1014,7 @@ function showToast(message) {
 </script>
 
 <div id="app" style="display:none;">
+  <div class="app-shell">
 
 <div class="header"></div>
 
@@ -1483,5 +1495,7 @@ scrollBtn.addEventListener('click', () => {
 
 </script>
 
+  </div>
+</div>
 </body>
 </html>
