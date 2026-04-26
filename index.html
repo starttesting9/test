@@ -331,7 +331,7 @@ button {
     border-right: none;
   }
 
-  .card-chevron{
+  .card-rank{
     width:36px;
     height:42px;
   }
@@ -552,7 +552,7 @@ button {
   font-weight: 500;
 }
 
-.card-chevron{
+.card-rank{
   position:absolute;
   right:10px;
   top:85px;
@@ -1064,7 +1064,29 @@ let visibleCount = 30;
 let STATUS_LABELS = {};
 let FIELD_LABELS = {};
 let FIELD_ORDER = [];
-let CHEVRON = '';
+let RANKS = {};
+let RANK_ALIAS = {};
+
+function getRankImage(item) {
+  const rank = String(item?.all?.f8 || '')
+    .trim()
+    .toLowerCase();
+
+  if (!rank) return '';
+
+  // точний збіг
+  if (RANKS[rank]) {
+    return RANKS[rank];
+  }
+
+  // alias
+  const alias = RANK_ALIAS[rank];
+  if (alias && RANKS[alias]) {
+    return RANKS[alias];
+  }
+
+  return '';
+}
 
 // рендер
 function render(items, append = false) {
@@ -1080,17 +1102,22 @@ function render(items, append = false) {
     div.className = 'card';
     div.dataset.index = currentData.indexOf(item);
     const labelData = getCardLabel(item);
-    const showChevron =
+    const showRank =
       item.status === 'A1' &&
       String(item?.all?.f11 || '').toLowerCase() !== 'сзч';
+    
+    const rankImage = showRank
+      ? getRankImage(item)
+      : '';
 
     div.innerHTML = `
-      ${showChevron ? `
+      ${rankImage ? `
         <img
-          class="card-chevron"
-          src="${CHEVRON}"
+          class="card-rank"
+          src="${rankImage}"
           alt="">
       ` : ''}
+    
       <div class="card-header">
         <div class="name">${item.pib}</div>
         ${labelData ? `
@@ -1253,12 +1280,13 @@ async function loadData(token) {
     FIELD_LABELS = result.meta?.fields || {};
     FIELD_ORDER = result.meta?.order || [];
     MARKS = result.meta?.marks || [];
-    CHEVRON = result.assets?.chevron || '';
+    RANKS = result.assets?.ranks || {};
+    RANK_ALIAS = result.assets?.rankAlias || {};
 
-    if (CHEVRON) {
+    Object.values(RANKS).forEach(src => {
       const img = new Image();
-      img.src = CHEVRON;
-    }
+      img.src = src;
+    });
 
     document.getElementById('label-A1').innerText =
       STATUS_LABELS['A1'] || 'A1';
