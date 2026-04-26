@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <link rel="stylesheet" href="ui.css"> -->
+<link rel="icon" type="image/png" id="favicon">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
@@ -555,13 +555,26 @@ button {
 .card-rank{
   position:absolute;
   right:5px;
-  top:65px;
+  top:75px;
   width:46px;
   height:60px;
   object-fit:contain;
   pointer-events:auto;
   user-select:none;
-  opacity:.9;
+  opacity:.8;
+}
+
+.loader-chevron{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  animation:pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes pulse{
+  0%   { transform:scale(1); opacity:.65; }
+  50%  { transform:scale(1.08); opacity:1; }
+  100% { transform:scale(1); opacity:.65; }
 }
 
 </style>
@@ -570,7 +583,7 @@ button {
 <body>
 
 <div id="loader" style="display:none;">
-  <div class="spinner"></div>
+  <img id="loaderChevron" class="loader-chevron" alt="">
   <div class="loader-text">Завантаження даних...</div>
 </div>
 
@@ -1282,6 +1295,12 @@ async function loadData(token) {
     MARKS = result.meta?.marks || [];
     RANKS = result.assets?.ranks || {};
     RANK_ALIAS = result.assets?.rankAlias || {};
+    const CHEVRON = result.assets?.chevron || '';
+
+    if (CHEVRON) {
+      document.getElementById('favicon').href = CHEVRON;
+      document.getElementById('loaderChevron').src = CHEVRON;
+    }
 
     Object.values(RANKS).forEach(src => {
       const img = new Image();
