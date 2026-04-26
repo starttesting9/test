@@ -48,20 +48,21 @@
 }
 
 .loader-main{
-  display:inline-flex;
+  display:flex;
   align-items:center;
   justify-content:center;
   min-height:22px;
 }
 
+.dots{
+  display:inline-block;
+  width:22px;
+  text-align:left;
+}
+
 @keyframes spin{
   from{ transform:rotate(0deg); }
   to{ transform:rotate(360deg); }
-}
-
-.dots{
-  display:inline-block;
-  width:auto;
 }
 
 html {
