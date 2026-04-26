@@ -46,6 +46,12 @@
   margin-top:4px;
 }
 
+.loader-main{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
 @keyframes spin{
   from{ transform:rotate(0deg); }
   to{ transform:rotate(360deg); }
@@ -1316,30 +1322,33 @@ async function loadData(token) {
   loaderText.dataset.base = 'Завантаження даних';
 
   loaderText.innerHTML = `
-    <span>Завантаження даних</span><span class="dots"></span>
+    <div class="loader-main">
+      <span>Завантаження даних</span><span class="dots"></span>
+    </div>
   `;
-  
   startLoaderDots();
 
   const msgTimer1 = setTimeout(() => {
     loaderText.innerHTML = `
-      <span>Завантаження даних</span><span class="dots"></span><br>
+      <div class="loader-main">
+        <span>Завантаження даних</span><span class="dots"></span>
+      </div>
       <small style="opacity:.7">Це може зайняти трохи часу</small>
     `;
-  
     stopLoaderDots();
     startLoaderDots();
   }, 8000);
 
   const msgTimer2 = setTimeout(() => {
     loaderText.innerHTML = `
-      <span>Завантаження даних</span><span class="dots"></span><br>
+      <div class="loader-main">
+        <span>Завантаження даних</span><span class="dots"></span>
+      </div>
       <small style="opacity:.7">
         Повільне з'єднання або великий обсяг даних.<br>
         Будь ласка, зачекайте...
       </small>
     `;
-  
     stopLoaderDots();
     startLoaderDots();
   }, 20000);
