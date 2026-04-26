@@ -564,21 +564,6 @@ button {
   opacity:.8;
 }
 
-.loader-chevron{
-  width:90px;
-  height:90px;
-  background-repeat:no-repeat;
-  background-position:center;
-  background-size:contain;
-  animation:pulse 1.8s ease-in-out infinite;
-}
-
-@keyframes pulse{
-  0%   { transform:scale(1); opacity:.65; }
-  50%  { transform:scale(1.08); opacity:1; }
-  100% { transform:scale(1); opacity:.65; }
-}
-
 </style>
 </head>
 
@@ -586,7 +571,9 @@ button {
 
 <div id="loader" style="display:none;">
   <div class="modern-loader"></div>
-  <div class="loader-text">Завантаження даних...</div>
+  <div class="loader-text" id="loaderText">
+    Завантаження даних...
+  </div>
 </div>
 
 <div id="error" style="
@@ -1288,23 +1275,51 @@ clearBtn.addEventListener('click', () => {
 });
 
 async function loadData(token) {
+  const loaderText = document.getElementById('loaderText');
+
+  loaderText.innerHTML = 'Завантаження даних...';
+
+  const msgTimer1 = setTimeout(() => {
+    loaderText.innerHTML = `
+      Завантаження даних...<br>
+      <small style="opacity:.7">Це може зайняти трохи часу</small>
+    `;
+  }, 7000);
+
+  const msgTimer2 = setTimeout(() => {
+    loaderText.innerHTML = `
+      Завантаження даних...<br>
+      <small style="opacity:.7">
+        Повільне з'єднання або великий обсяг даних.<br>
+        Будь ласка, зачекайте...
+      </small>
+    `;
+  }, 15000);
+
   try {
-    const res = await fetch(`https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec?token=${token}`);
+    const res = await fetch(
+      `https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec?token=${token}`
+    );
+
     const result = await res.json();
+
+    clearTimeout(msgTimer1);
+    clearTimeout(msgTimer2);
+
     STATUS_LABELS = result.meta?.labels || {};
     FIELD_LABELS = result.meta?.fields || {};
     FIELD_ORDER = result.meta?.order || [];
     MARKS = result.meta?.marks || [];
     RANKS = result.assets?.ranks || {};
     RANK_ALIAS = result.assets?.rankAlias || {};
+
     const CHEVRON = result.assets?.chevron || '';
 
     if (CHEVRON) {
       const img = new Image();
       img.src = CHEVRON;
-    
+
       document.getElementById('favicon').href = CHEVRON;
-      document.getElementById('loaderChevron').style.backgroundImage = `url('${CHEVRON}')`;
     }
 
     Object.values(RANKS).forEach(src => {
@@ -1314,7 +1329,7 @@ async function loadData(token) {
 
     document.getElementById('label-A1').innerText =
       STATUS_LABELS['A1'] || 'A1';
-    
+
     document.getElementById('label-B2').innerText =
       STATUS_LABELS['B2'] || 'B2';
 
@@ -1325,7 +1340,9 @@ async function loadData(token) {
       return;
     }
 
-    document.querySelector('.header').innerText = `Дані станом на ${result.date}`;
+    document.querySelector('.header').innerText =
+      `Дані станом на ${result.date}`;
+
     data = result.data;
     currentData = data;
 
@@ -1340,6 +1357,10 @@ async function loadData(token) {
     initAutoHideScroll();
 
   } catch (e) {
+    // ← і тут теж чистимо
+    clearTimeout(msgTimer1);
+    clearTimeout(msgTimer2);
+
     console.error(e);
 
     document.getElementById('loader').style.display = 'none';
