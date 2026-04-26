@@ -567,9 +567,9 @@ button {
 .loader-chevron{
   width:90px;
   height:90px;
-  object-fit:contain;
-  display:block;
-  filter: drop-shadow(0 4px 10px rgba(0,0,0,.18));
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
   animation:pulse 1.8s ease-in-out infinite;
 }
 
@@ -585,7 +585,7 @@ button {
 <body>
 
 <div id="loader" style="display:none;">
-  <img id="loaderChevron" class="loader-chevron" alt="">
+  <div id="loaderChevron" class="loader-chevron"></div>
   <div class="loader-text">Завантаження даних...</div>
 </div>
 
@@ -1304,7 +1304,7 @@ async function loadData(token) {
       img.src = CHEVRON;
     
       document.getElementById('favicon').href = CHEVRON;
-      document.getElementById('loaderChevron').src = CHEVRON;
+      document.getElementById('loaderChevron').style.backgroundImage = `url('${CHEVRON}')`;
     }
 
     Object.values(RANKS).forEach(src => {
