@@ -42,6 +42,12 @@
   to{ transform:rotate(360deg); }
 }
 
+.dots{
+  display:inline-block;
+  width:28px;
+  text-align:left;
+}
+
 html {
   width: 100vw;
   -webkit-text-size-adjust: 100%;
@@ -1284,9 +1290,8 @@ function startLoaderDots() {
   let dots = 0;
 
   dotsTimer = setInterval(() => {
-    dots = (dots + 1) % 4;
-
-    const base = el.dataset.base || 'Завантаження даних';
+    dots = (dots % 3) + 1;
+  
     el.querySelector('.dots').textContent = '.'.repeat(dots);
   }, 450);
 }
@@ -1328,7 +1333,7 @@ async function loadData(token) {
   
     stopLoaderDots();
     startLoaderDots();
-  }, 15000);
+  }, 20000);
 
   try {
     const res = await fetch(
