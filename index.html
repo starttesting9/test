@@ -1298,6 +1298,9 @@ async function loadData(token) {
     const CHEVRON = result.assets?.chevron || '';
 
     if (CHEVRON) {
+      const img = new Image();
+      img.src = CHEVRON;
+    
       document.getElementById('favicon').href = CHEVRON;
       document.getElementById('loaderChevron').src = CHEVRON;
     }
