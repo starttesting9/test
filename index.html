@@ -659,10 +659,8 @@ button {
   body::after{
     content:"";
     position:fixed;
-    top:50%;
-    transform:translateY(-50%);
-    width:340px;
-    height:340px;
+    width:520px;
+    height:520px;
     pointer-events:none;
     z-index:0;
 
@@ -671,25 +669,19 @@ button {
     background-position:center;
     background-size:contain;
 
-    opacity:.035;
-    filter: grayscale(1) brightness(1.15);
+    opacity:.07;
+    filter: grayscale(1) brightness(1.2);
   }
 
   body::before{
-    left:-80px;
+    left:-170px;
+    top:120px;
   }
 
   body::after{
-    right:-80px;
-    transform:translateY(-50%) scaleX(-1);
-  }
-
-  #app,
-  #loginPage,
-  #loader,
-  #error{
-    position:relative;
-    z-index:1;
+    right:-170px;
+    top:120px;
+    transform:scaleX(-1);
   }
 }
 
