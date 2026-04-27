@@ -194,7 +194,8 @@ input {
 }
 
 .card {
- background:white;
+ background:#ffffff;
+ border:1px solid #ececec;
  margin:8px 10px;
  padding:12px;
  border-radius:10px;
@@ -376,9 +377,13 @@ button {
   text-align:left;
   font-size:18px;
   font-weight:500;
-  color:#55606d;
+  color:#7a8794;
   padding:0 4px;
   font-family:system-ui,sans-serif;
+}
+
+.dashboard-title strong{
+  color:#243447;
 }
 
 .dashboard-item .dash-card {
@@ -1457,7 +1462,7 @@ async function loadData(token) {
     }
 
     document.querySelector('.dashboard-title').innerText =
-      `Станом на ${result.date}`;
+      `Станом на <strong>${result.date}`</strong>;
 
     data = result.data;
     currentData = data;
