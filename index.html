@@ -654,6 +654,14 @@ button {
   display:none;
 }
 
+.age-badge{
+  color:#6b7280;
+  font-weight:500;
+  white-space:nowrap;
+  margin-left:4px;
+  font-size:.95em;
+}
+
 @media (min-width: 1130px){
   body{
     position:relative;
@@ -917,7 +925,10 @@ function renderBirthdays(items) {
         <div class="today-item ${i >= 3 ? 'today-hidden' : ''}"
              style="${i >= 3 ? 'display:none;' : ''}">
           <span class="today-dot"></span>
-          <span>${p.pib}</span>
+          <span>
+            ${p.pib}
+            ${p.all?.["Точний вік"] ? `<span class="age-badge">• ${p.all["Точний вік"]}</span>` : ""}
+          </span>
         </div>
       `).join('')}
     </div>
@@ -977,6 +988,7 @@ function renderBirthdays(items) {
               ${list.map(p => `
                 <div class="bd-name ui-item">
                   ${p.pib}
+                  ${p.all?.["Точний вік"] ? `<span class="age-badge">• ${p.all["Точний вік"]}</span>` : ""}
                 </div>
               `).join('')}
             </div>
