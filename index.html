@@ -109,6 +109,21 @@ html, body {
   margin-top: 6px;
 }
 
+.action-btn{
+  border:none;
+  background:#eef2f7;
+  color:#334155;
+  border-radius:8px;
+  padding:7px 12px;
+  font-weight:500;
+  cursor:pointer;
+  transition:.2s;
+}
+
+.action-btn:hover{
+  background:#dde6f2;
+}
+  
 .search-wrapper {
   position: relative;
   padding: 10px;
@@ -324,19 +339,19 @@ button {
   color:#2c3e50;
 }
 
-#dashboard {
-  padding: 10px;
-  max-width: 800px;
-  margin: 0 auto;
+#dashboard{
+  padding:10px;
+  max-width:800px;
+  margin:0 auto;
 }
 
 .search-wrapper,
 #searchCount,
 #list{
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
-  box-sizing: border-box;
+  max-width:760px;
+  margin:0 auto;
+  width:100%;
+  box-sizing:border-box;
 }
 
 .dashboard-row {
@@ -354,7 +369,7 @@ button {
 }
 
 .dashboard-title{
-  margin-bottom:10px;
+  margin-bottom:4px;
   text-align:left;
   font-size:18px;
   font-weight:500;
@@ -618,6 +633,18 @@ button {
   pointer-events:none;
   user-select:none;
   opacity:.75;
+}
+
+#searchCount{
+  max-width:800px;
+  margin:0 auto;
+  width:100%;
+  box-sizing:border-box;
+
+  padding:0 4px 10px;
+  font-size:13px;
+  color:#6b7280;
+  display:none;
 }
 
 </style>
@@ -1103,12 +1130,7 @@ function showToast(message) {
   <span id="clearSearch">✖</span>
 </div>
 
-<div id="searchCount" style="
-  padding: 0 10px 10px;
-  font-size: 14px;
-  color: #555;
-  display: none;
-"></div>
+<div id="searchCount"></div>
 
 <div id="list"></div>
 
@@ -1192,7 +1214,9 @@ function render(items, append = false) {
       </div>
     
       <div style="display:flex; gap:10px;">
-        <button onclick="toggle(this)">Детальніше</button>
+        <button class="action-btn" onclick="toggle(this)">
+          Детальніше
+        </button>
         <button class="copy-all-btn" style="display:none;">📋 Копіювати</button>
       </div>
     
@@ -1308,7 +1332,7 @@ searchInput.addEventListener('input', e => {
 
     if (el) {
       el.style.display = 'block';
-      el.innerText = `🔍 Знайдено: ${currentData.length}`;
+      el.innerHTML = `🔍 <b>Знайдено:</b> ${currentData.length}`;
     }
   } else {
     const el = getSearchCount();
