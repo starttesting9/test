@@ -1496,7 +1496,7 @@ async function loadData(token) {
     if (result.error) {
       clearTimeout(msgTimer1);
       clearTimeout(msgTimer2);
-      
+    
       const err = result.error.toLowerCase();
     
       if (err.includes('диск')) {
@@ -1504,8 +1504,22 @@ async function loadData(token) {
           '☁️ Тимчасова помилка Google Drive',
           'Спробуйте оновити сторінку через 10–30 секунд'
         );
+    
+      } else if (
+        err.includes('token verification') ||
+        err.includes('oauth2.googleapis.com') ||
+        err.includes('квоту')
+      ) {
+        showError(
+          '🔐 Тимчасова помилка авторизації',
+          'Google тимчасово обмежив перевірку входу. Спробуйте через 1–2 хвилини'
+        );
+    
       } else if (err.includes('access denied')) {
-        showError('☠️ Немає доступу');
+        showError(
+          '☠️ Немає доступу'
+        );
+    
       } else {
         showError(
           '⚠️ Службова помилка',
