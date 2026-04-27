@@ -659,32 +659,22 @@ button {
     position:relative;
   }
 
-  body::before,
-  body::after{
+  body::before{
     content:"";
     position:fixed;
-    top:120px;
-    width:220px;
-    height:420px;
+    inset:0;
     pointer-events:none;
     z-index:-1;
 
-    background-image:var(--chevron-bg);
-    background-repeat:no-repeat;
-    background-position:center;
-    background-size:contain;
+    background-image: var(--chevron-bg);
+    background-size: 72px;
+    background-repeat: repeat;
 
-    opacity:.045;
-    filter: grayscale(1) brightness(1.15);
-  }
+    opacity: .02;
+    filter: grayscale(1) brightness(1.25);
 
-  body::before{
-    left:30px;
-  }
-
-  body::after{
-    right:30px;
-    transform:scaleX(-1);
+    background-position:
+      40px 60px;
   }
 }
 
