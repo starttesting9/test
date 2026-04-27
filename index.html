@@ -654,33 +654,36 @@ button {
   display:none;
 }
 
-@media (min-width: 769px){
+@media (min-width: 1200px){
+  body{
+    position:relative;
+  }
+
   body::before,
   body::after{
     content:"";
     position:fixed;
-    width:520px;
-    height:520px;
+    top:120px;
+    width:220px;
+    height:420px;
     pointer-events:none;
-    z-index:0;
+    z-index:-1;
 
     background-image:var(--chevron-bg);
     background-repeat:no-repeat;
     background-position:center;
     background-size:contain;
 
-    opacity:.07;
-    filter: grayscale(1) brightness(1.2);
+    opacity:.045;
+    filter: grayscale(1) brightness(1.15);
   }
 
   body::before{
-    left:-170px;
-    top:120px;
+    left:30px;
   }
 
   body::after{
-    right:-170px;
-    top:120px;
+    right:30px;
     transform:scaleX(-1);
   }
 }
