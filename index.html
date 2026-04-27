@@ -1501,7 +1501,7 @@ async function loadData(token) {
           '☁️ Тимчасова помилка Google Drive',
           'Спробуйте оновити сторінку через 10–30 секунд'
         );
-      } else if (err.includes('доступ')) {
+      } else if (err.includes('access denied')) {
         showError('☠️ Немає доступу');
       } else {
         showError(
