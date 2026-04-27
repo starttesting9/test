@@ -673,6 +673,20 @@ button {
     opacity: .04;
     filter: grayscale(1) brightness(1.08);
 
+    mask-image: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0,0,0,.35) 35%,
+      rgba(0,0,0,.9) 75%
+    );
+    
+    -webkit-mask-image: radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0,0,0,.35) 35%,
+      rgba(0,0,0,.9) 75%
+    );
+
     background-position:
       35px 50px;
   }
