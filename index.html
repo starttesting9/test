@@ -354,12 +354,13 @@ button {
 }
 
 .dashboard-title{
-  text-align:center;
   margin-bottom:10px;
-  font-size:16px;
-  font-weight:600;
+  text-align:left;
+  font-size:18px;
+  font-weight:500;
   color:#55606d;
-  letter-spacing:.2px;
+  padding-left:6px;
+  font-family: system-ui, sans-serif;
 }
 
 .dashboard-item .dash-card {
@@ -1430,7 +1431,7 @@ async function loadData(token) {
     }
 
     document.querySelector('.dashboard-title').innerText =
-      `Дані станом на ${result.date}`;
+      `Станом на ${result.date}`;
 
     data = result.data;
     currentData = data;
