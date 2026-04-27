@@ -654,6 +654,45 @@ button {
   display:none;
 }
 
+@media (min-width: 769px){
+  body::before,
+  body::after{
+    content:"";
+    position:fixed;
+    top:50%;
+    transform:translateY(-50%);
+    width:340px;
+    height:340px;
+    pointer-events:none;
+    z-index:0;
+
+    background-image:var(--chevron-bg);
+    background-repeat:no-repeat;
+    background-position:center;
+    background-size:contain;
+
+    opacity:.035;
+    filter: grayscale(1) brightness(1.15);
+  }
+
+  body::before{
+    left:-80px;
+  }
+
+  body::after{
+    right:-80px;
+    transform:translateY(-50%) scaleX(-1);
+  }
+
+  #app,
+  #loginPage,
+  #loader,
+  #error{
+    position:relative;
+    z-index:1;
+  }
+}
+
 </style>
 </head>
 
@@ -1438,8 +1477,13 @@ async function loadData(token) {
     if (CHEVRON) {
       const img = new Image();
       img.src = CHEVRON;
-
+    
       document.getElementById('favicon').href = CHEVRON;
+    
+      document.body.style.setProperty(
+        '--chevron-bg',
+        `url(${CHEVRON})`
+      );
     }
 
     Object.values(RANKS).forEach(src => {
