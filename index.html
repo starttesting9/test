@@ -718,7 +718,12 @@ button {
   text-align:center;
   font-family:Arial;
 ">
-  <h2>☠️ Немає доступу</h2>
+  <h2 id="errorTitle"></h2>
+  <div id="errorText" style="
+    margin-top:10px;
+    color:#666;
+    font-size:14px;
+  "></div>
 </div>
 
 <button id="scrollTopBtn" class="scroll-top">↑</button>
@@ -822,6 +827,18 @@ function handleCredentialResponse(response) {
   document.getElementById('loader').style.display = 'flex';
 
   loadData(response.credential);
+}
+
+function showError(title, text='') {
+  stopLoaderDots();
+
+  document.getElementById('loader').style.display = 'none';
+  document.getElementById('loginPage').style.display = 'none';
+
+  document.getElementById('errorTitle').innerText = title;
+  document.getElementById('errorText').innerText = text;
+
+  document.getElementById('error').style.display = 'block';
 }
 
 function getCardLabel(item) {
@@ -1473,6 +1490,29 @@ async function loadData(token) {
 
     const result = await res.json();
 
+    if (result.error) {
+      clearTimeout(msgTimer1);
+      clearTimeout(msgTimer2);
+      
+      const err = result.error.toLowerCase();
+    
+      if (err.includes('диск')) {
+        showError(
+          '☁️ Тимчасова помилка Google Drive',
+          'Спробуйте оновити сторінку через 10–30 секунд'
+        );
+      } else if (err.includes('доступ')) {
+        showError('☠️ Немає доступу');
+      } else {
+        showError(
+          '⚠️ Службова помилка',
+          result.error
+        );
+      }
+    
+      return;
+    }
+
     clearTimeout(msgTimer1);
     clearTimeout(msgTimer2);
 
@@ -1508,25 +1548,17 @@ async function loadData(token) {
     document.getElementById('label-B2').innerText =
       STATUS_LABELS['B2'] || 'B2';
 
-    if (result.error) {
-      stopLoaderDots();
-      document.getElementById('loader').style.display = 'none';
-      document.getElementById('loginPage').style.display = 'none';
-      document.getElementById('error').style.display = 'block';
-      return;
-    }
+    stopLoaderDots();
+
+    document.getElementById('loader').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    document.getElementById('loginPage').style.display = 'none';
 
     document.querySelector('.dashboard-title').innerHTML =
       `Станом на <strong>${result.date}</strong>`;
 
     data = result.data;
     currentData = data;
-
-    stopLoaderDots();
-
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('app').style.display = 'block';
-    document.getElementById('loginPage').style.display = 'none';
 
     render(currentData.slice(0, visibleCount));
     updateDashboard(data);
@@ -1539,10 +1571,11 @@ async function loadData(token) {
     clearTimeout(msgTimer2);
 
     console.error(e);
-    stopLoaderDots();
-    document.getElementById('loader').style.display = 'none';
-    document.getElementById('loginPage').style.display = 'none';
-    document.getElementById('error').style.display = 'block';
+
+    showError(
+      '🌐 Помилка зʼєднання',
+      'Не вдалося отримати дані'
+    );
   }
 }
   
