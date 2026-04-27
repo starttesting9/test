@@ -657,12 +657,13 @@ button {
 .age-badge{
   display:inline-block;
   margin-left:6px;
-  padding:1px 6px;
+  padding:1px 7px;
   border-radius:999px;
-  background:#f2f4f7;
+  background:#eef2f6;
   color:#667085;
-  font-size:.82em;
-  font-weight:600;
+  font-size:.78em;
+  font-weight:700;
+  vertical-align:middle;
 }
 
 @media (min-width: 1130px){
@@ -947,7 +948,7 @@ function renderBirthdays(items) {
           <span class="today-dot"></span>
           <span>
             ${p.pib}
-            ${p.age ? `<span class="age-badge">• ${p.age}</span>` : ""}
+            ${p.age ? `<span class="age-badge">(${p.age})</span>` : ""}
           </span>
         </div>
       `).join('')}
@@ -1008,7 +1009,7 @@ function renderBirthdays(items) {
               ${list.map(p => `
                 <div class="bd-name ui-item">
                   ${p.pib}
-                  ${p.age ? `<span class="age-badge">• ${p.age}</span>` : ""}
+                  ${p.age ? `<span class="age-badge">(${p.age})</span>` : ""}
                 </div>
               `).join('')}
             </div>
