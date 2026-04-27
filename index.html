@@ -655,11 +655,14 @@ button {
 }
 
 .age-badge{
-  color:#b26a00;
-  font-weight:500;
-  white-space:nowrap;
-  margin-left:4px;
-  font-size:.95em;
+  display:inline-block;
+  margin-left:6px;
+  padding:1px 6px;
+  border-radius:999px;
+  background:#f2f4f7;
+  color:#667085;
+  font-size:.82em;
+  font-weight:600;
 }
 
 @media (min-width: 1130px){
@@ -1005,7 +1008,7 @@ function renderBirthdays(items) {
               ${list.map(p => `
                 <div class="bd-name ui-item">
                   ${p.pib}
-                  ${p.all?.["Точний вік"] ? `<span class="age-badge">• ${p.all["Точний вік"]}</span>` : ""}
+                  ${p.age ? `<span class="age-badge">• ${p.age}</span>` : ""}
                 </div>
               `).join('')}
             </div>
