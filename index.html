@@ -92,12 +92,6 @@ body {
     width: 100%;
     max-width: 100%;
   }
-
-  .header{
-    max-width:1280px;
-    margin:0 auto;
-    border-radius:0;
-  }
 }
 
 html, body {
@@ -171,14 +165,6 @@ html, body {
 
 .copy-btn:hover {
   opacity: 1;
-}
-
-.header{
-  padding:10px;
-  background:#2c3e50;
-  color:white;
-  text-align:center;
-  box-sizing:border-box;
 }
 
 .search { padding:10px; }
@@ -365,6 +351,18 @@ button {
   border-radius: 12px; 
   transition: all 0.2s ease;
   min-width: 0;
+}
+
+.dashboard-title{
+  background:#2c3e50;
+  color:#fff;
+  text-align:center;
+  padding:12px 16px;
+  border-radius:12px;
+  margin-bottom:14px;
+  font-size:20px;
+  font-weight:600;
+  box-shadow:0 2px 10px rgba(0,0,0,.08);
 }
 
 .dashboard-item .dash-card {
@@ -1037,9 +1035,8 @@ function showToast(message) {
 <div id="app" style="display:none;">
   <div class="app-shell">
 
-<div class="header"></div>
-
 <div id="dashboard" style="padding:10px;">
+  <div class="dashboard-title"></div>
 
   <div class="dashboard-row">
 
@@ -1435,7 +1432,7 @@ async function loadData(token) {
       return;
     }
 
-    document.querySelector('.header').innerText =
+    document.querySelector('.dashboard-title').innerText =
       `Дані станом на ${result.date}`;
 
     data = result.data;
