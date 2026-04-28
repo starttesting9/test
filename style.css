@@ -51,17 +51,52 @@ body.dark .action-btn:hover{
   background:#31415f;
 }
 
+body.dark .card{
+  background:#12213d;
+  border:1px solid rgba(255,255,255,.07);
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.28),
+    inset 0 1px 0 rgba(255,255,255,.03);
+}
+
 body.dark .card-label{
   background:#24324d;
   color:#cbd5e1;
+}
+
+body.dark .card-label.szch{
+  background:#7f1d1d;
+  color:#fecaca;
 }
 
 body.dark #chart::after{
   background:#13203a;
 }
 
+body.dark #chart-center{
+  color:#f8fafc;
+}
+
+body.dark #shps-count{
+  color:#22c55e;
+}
+
+body.dark #rozp-count{
+  color:#f59e0b;
+}
+
 body.dark .detail-key{
   color:#94a3b8;
+}
+
+body.dark .toggle-btn{
+  background:#24324d;
+  color:#e5e7eb;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+body.dark .toggle-btn:hover{
+  background:#31415f;
 }
 
 body.dark .detail-value{
@@ -90,6 +125,14 @@ body.dark .ui-item{
 
 body.dark .bd-name:hover{
   background:#1e293b;
+}
+
+body.dark .dashboard-title{
+  color:#94a3b8;
+}
+
+body.dark .dashboard-title strong{
+  color:#f8fafc;
 }
 
 #loader{
