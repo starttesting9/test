@@ -157,13 +157,6 @@ body.dark .dashboard-title strong{
   color:#f8fafc;
 }
 
-/* body.dark .dashboard-item{
-  background:rgba(19,32,58,.45);
-  border:1px solid rgba(255,255,255,.05);
-  border-radius:14px;
-  padding:10px;
-} */
-
 body.dark .dashboard-item{
   background: rgba(19,32,58,.28);
   border: 1px solid rgba(255,255,255,.03);
