@@ -135,6 +135,28 @@ body.dark .dashboard-title strong{
   color:#f8fafc;
 }
 
+body.dark .age-badge{
+  color:#cbd5e1;
+  opacity:.85;
+}
+
+body.dark .scroll-top{
+  background:rgba(37, 99, 235, .22);
+  border:1px solid rgba(147,197,253,.25);
+  color:#eaf2ff;
+  box-shadow:0 6px 18px rgba(0,0,0,.28);
+}
+
+body.dark .scroll-top:hover{
+  background:rgba(59,130,246,.32);
+  box-shadow:0 8px 22px rgba(0,0,0,.35);
+}
+
+body.dark .bd-count,
+body.dark .bd-arrow{
+  color:#cbd5e1;
+}
+
 #loader{
   position:fixed;
   inset:0;
