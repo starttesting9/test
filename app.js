@@ -784,23 +784,24 @@ function initTheme(){
 
   const saved = localStorage.getItem('theme') || 'light';
 
-  if (saved === 'dark'){
-    document.body.classList.add('dark');
-    btn.textContent = '☀️';
-  } else {
-    btn.textContent = '🌙';
-  }
+  document.body.classList.toggle(
+    'dark',
+    saved === 'dark'
+  );
 
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
+  btn.textContent =
+    saved === 'dark' ? '☀️' : '🌙';
 
-    const dark = document.body.classList.contains('dark');
+  btn.onclick = () => {
+    const dark =
+      document.body.classList.toggle('dark');
 
     localStorage.setItem(
       'theme',
       dark ? 'dark' : 'light'
     );
 
-    btn.textContent = dark ? '☀️' : '🌙';
-  });
+    btn.textContent =
+      dark ? '☀️' : '🌙';
+  };
 }
