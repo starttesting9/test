@@ -702,6 +702,8 @@ async function loadData(token) {
     document.getElementById('app').style.display = 'block';
     document.getElementById('loginPage').style.display = 'none';
 
+    initTheme();
+
     document.querySelector('.dashboard-title').innerHTML =
       `Станом на <strong>${result.date}</strong>`;
 
@@ -802,5 +804,3 @@ function initTheme(){
     btn.textContent = dark ? '☀️' : '🌙';
   });
 }
-
-initTheme();
