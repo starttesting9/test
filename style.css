@@ -104,13 +104,14 @@ body.dark .detail-value{
 }
 
 body.dark .copy-all-btn{
-  background:#1d4f3a;
-  color:#eafff4;
-  border:1px solid rgba(255,255,255,.06);
+  background:#16a34a;
+  color:white;
+  border:none;
+  box-shadow:0 4px 14px rgba(22,163,74,.28);
 }
 
 body.dark .copy-all-btn:hover{
-  background:#256046;
+  background:#22c55e;
 }
 
 body.dark .copy-btn{
