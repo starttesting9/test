@@ -91,7 +91,7 @@ body.dark .detail-key{
 
 body.dark .toggle-btn{
   background:#24324d;
-  color:#e5e7eb;
+  color:#f8fafc;
   border:1px solid rgba(255,255,255,.08);
 }
 
@@ -101,6 +101,16 @@ body.dark .toggle-btn:hover{
 
 body.dark .detail-value{
   color:#f8fafc;
+}
+
+body.dark .copy-all-btn{
+  background:#1d4f3a;
+  color:#eafff4;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+body.dark .copy-all-btn:hover{
+  background:#256046;
 }
 
 body.dark .copy-btn{
