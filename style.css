@@ -9,6 +9,11 @@
   --chip-bg: #ecf0f1;
   --today-bg: #fff4e5;
   --shadow: 0 2px 5px rgba(0,0,0,.1);
+  --loader-bg:#f6f7f9;
+  --loader-ring:rgba(0,0,0,.08);
+  --loader-accent:#2f6ea5;
+  --loader-text:#555;
+  --loader-soft:#8a8a8a;
 }
 
 body.dark{
@@ -22,6 +27,11 @@ body.dark{
   --chip-bg: #1e293b;
   --today-bg: #1f2937;
   --shadow: 0 4px 18px rgba(0,0,0,.35);
+  --loader-bg:rgba(11,18,34,.96);
+  --loader-ring:rgba(255,255,255,.08);
+  --loader-accent:#38bdf8;
+  --loader-text:#e2e8f0;
+  --loader-soft:#94a3b8;
 }
 
 body.dark .details{
@@ -196,7 +206,7 @@ body.dark .bd-arrow{
   flex-direction:column;
   align-items:center;
   justify-content:center;
-  background:#f6f7f9;
+  background:var(--loader-bg);
   z-index:9999;
 }
 
@@ -204,8 +214,8 @@ body.dark .bd-arrow{
   width:54px;
   height:54px;
   border-radius:50%;
-  border:4px solid rgba(0,0,0,.08);
-  border-top:4px solid #2f6ea5;
+  border:4px solid var(--loader-ring);
+  border-top:4px solid var(--loader-accent);
   animation:spin 1.6s linear infinite;
   box-shadow:0 4px 18px rgba(0,0,0,.08);
   margin-bottom:14px;
@@ -216,12 +226,10 @@ body.dark .bd-arrow{
   flex-direction:column;
   align-items:center;
   text-align:center;
-
   font-size:15px;
-  color:#555;
+  color:var(--loader-text);
   letter-spacing:.2px;
   line-height:1.45;
-
   min-height:0;
 }
 
@@ -229,7 +237,7 @@ body.dark .bd-arrow{
   margin-top:4px;
   display:block;
   font-size:13px;
-  color:#8a8a8a;
+  color:var(--loader-soft);
 }
 
 .loader-main{
