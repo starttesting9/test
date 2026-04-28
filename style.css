@@ -581,7 +581,7 @@ button {
   box-shadow: 0 6px 14px rgba(0,0,0,0.08);
 }
 
-/* 📱 мобілка */
+/* мобілка */
 @media (max-width: 768px) {
   .dashboard-row {
     grid-template-columns: 1fr 1fr;
