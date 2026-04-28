@@ -27,7 +27,7 @@ html.dark{
   --chip-bg: #1e293b;
   --today-bg: #1f2937;
   --shadow: 0 4px 18px rgba(0,0,0,.35);
-  --loader-bg:rgba(11,18,34,.96);
+  --loader-bg:#0b1222;
   --loader-ring:rgba(255,255,255,.08);
   --loader-accent:#38bdf8;
   --loader-text:#e2e8f0;
@@ -252,7 +252,6 @@ html.dark .bd-arrow{
 }
 
 html {
-  width: 100vw;
   -webkit-text-size-adjust: 100%;
 }
 
