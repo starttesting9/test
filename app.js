@@ -702,8 +702,6 @@ async function loadData(token) {
     document.getElementById('app').style.display = 'block';
     document.getElementById('loginPage').style.display = 'none';
 
-    initTheme();
-
     document.querySelector('.dashboard-title').innerHTML =
       `Станом на <strong>${result.date}</strong>`;
 
@@ -782,9 +780,10 @@ function initTheme(){
   const btn = document.getElementById('themeToggle');
   if (!btn) return;
 
+  const root = document.documentElement;
   const saved = localStorage.getItem('theme') || 'light';
 
-  document.body.classList.toggle(
+  root.classList.toggle(
     'dark',
     saved === 'dark'
   );
@@ -794,7 +793,7 @@ function initTheme(){
 
   btn.onclick = () => {
     const dark =
-      document.body.classList.toggle('dark');
+      root.classList.toggle('dark');
 
     localStorage.setItem(
       'theme',
@@ -805,3 +804,4 @@ function initTheme(){
       dark ? '☀️' : '🌙';
   };
 }
+initTheme();
