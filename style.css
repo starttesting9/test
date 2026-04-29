@@ -965,5 +965,7 @@ button {
 }
 
 html.dark .login-google-wrap{
-  background:rgba(255,255,255,.04);
+  padding:4px;
+  background:transparent;
+  border:none;
 }
