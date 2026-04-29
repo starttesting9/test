@@ -2,7 +2,6 @@
 <html>
   
 <head>
-<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -44,25 +43,10 @@
 
 <button id="scrollTopBtn" class="scroll-top">↑</button>
 
-<div id="loginPage" style="
-  min-height:100dvh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#f5f5f5;
-">
+<div id="loginPage">
+  <div class="login-card">
 
-  <div style="
-    background:white;
-    padding:25px;
-    border-radius:10px;
-    box-shadow:0 5px 20px rgba(0,0,0,0.1);
-    text-align:center;
-    width:90%;
-    max-width:300px;
-  ">
-
-    <div style="font-size:14px; color:#666; margin-bottom:15px;">
+    <div class="login-title">
       Увійдіть для продовження
     </div>
 
@@ -72,13 +56,8 @@
          data-auto_prompt="false"
          data-ux_mode="popup">
     </div>
-    
-    <div style="display:flex;
-      justify-content:center;
-      padding:8px;
-      border-radius:999px;
-      background:#fafafa;
-    ">
+
+    <div class="login-google-wrap">
       <div class="g_id_signin"
            data-type="standard"
            data-size="large"
@@ -88,6 +67,7 @@
            data-width="250">
       </div>
     </div>
+
   </div>
 </div>
 
@@ -98,7 +78,7 @@
   
   <div class="app-shell">
 
-<div id="dashboard" style="padding:10px;">
+<div id="dashboard">
   <div class="dashboard-title"></div>
 
   <div class="dashboard-row">
