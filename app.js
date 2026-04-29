@@ -449,10 +449,11 @@ function buildDetailsHTML(item) {
   return finalKeys.map(k => {
     const rawValue = data[k];
     let v = highlightSZCH(rawValue);
-
+    
     if (v === null || v === undefined || v === '') return '';
+    
+    v = String(v).replace(/\r?\n/g, '<br>');
 
-    // const displayKey = k.replace(/\r?\n/g, ' ');
     const displayKey = (FIELD_LABELS[k] || k).replace(/\r?\n/g, ' ');
 
     const keyHTML = k === 'ТВО'
