@@ -887,7 +887,7 @@ button {
 .theme-toggle{
   position: fixed;
   top: 14px;
-  left: calc(50% + 430px + 12px);
+  left: calc(50% + 430px - 36px);
   width: 30px;
   height: 30px;
   margin: 0;
