@@ -970,8 +970,8 @@ button {
 .login-google-wrap{
   display:flex;
   justify-content:center;
-  padding:14px;
-  border-radius:999px;
-  background:#f3f4f6;
-  border:1px solid #e5e7eb;
+  padding:4px;
+  background:transparent;
+  border:none;
+  border-radius:0;
 }
