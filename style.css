@@ -192,6 +192,18 @@ html.dark .bd-arrow{
   color:#cbd5e1;
 }
 
+html.dark .login-google-wrap{
+  padding:4px;
+  background:transparent;
+  border:none;
+}
+
+html.dark .login-card{
+  background:#10244b;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
+}
+
 #loader{
   position:fixed;
   inset:0;
@@ -943,9 +955,9 @@ button {
   border-radius:16px;
   text-align:center;
 
-  background:#10244b;
-  border:1px solid rgba(255,255,255,.08);
-  box-shadow:0 12px 35px rgba(0,0,0,.35);
+  background:#ffffff;
+  border:1px solid #e5e7eb;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 .login-title{
@@ -960,12 +972,6 @@ button {
   justify-content:center;
   padding:14px;
   border-radius:999px;
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-}
-
-html.dark .login-google-wrap{
-  padding:4px;
-  background:transparent;
-  border:none;
+  background:#f3f4f6;
+  border:1px solid #e5e7eb;
 }
