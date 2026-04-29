@@ -902,12 +902,12 @@ button {
   z-index: 999;
   font-size: 14px;
   line-height: 1;
-  transition:.2s ease;
-  opacity:.88;
+  transition:.2s;
+  opacity:.72;
 }
 
 .theme-toggle:hover{
-  transform: scale(1.06);
+  transform: scale(1.05);
   box-shadow: 0 4px 12px rgba(0,0,0,.12);
   opacity:1;
 }
