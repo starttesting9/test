@@ -918,6 +918,7 @@ button {
 
 @media (max-width:980px){
   .theme-toggle{
+    left:auto;
     right:8px;
     top:8px;
     width:28px;
