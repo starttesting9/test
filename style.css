@@ -612,7 +612,7 @@ button {
   }
 }
 
-/* 💻 ПК */
+/* ПК */
 @media (min-width: 769px) {
   .dashboard-row {
     grid-template-columns: 1fr 1.3fr 1.7fr;
