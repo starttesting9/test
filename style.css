@@ -923,3 +923,43 @@ button {
     top:12px;
   }
 }
+
+/* login */
+#loginPage{
+  min-height:100dvh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--bg);
+}
+
+.login-card{
+  width:90%;
+  max-width:320px;
+  padding:28px;
+  border-radius:16px;
+  text-align:center;
+
+  background:var(--card-bg);
+  border:1px solid var(--border);
+  box-shadow:var(--shadow);
+}
+
+.login-title{
+  font-size:14px;
+  color:var(--text-soft);
+  margin-bottom:16px;
+  font-weight:500;
+}
+
+.login-google-wrap{
+  display:flex;
+  justify-content:center;
+  padding:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.35);
+}
+
+html.dark .login-google-wrap{
+  background:rgba(255,255,255,.04);
+}
