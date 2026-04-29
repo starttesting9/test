@@ -898,7 +898,7 @@ button {
 
 .theme-toggle{
   position: fixed;
-  top: 5px;
+  top: 4px;
   left: calc(50% + 430px - 36px);
   width: 30px;
   height: 30px;
