@@ -943,9 +943,9 @@ button {
   border-radius:16px;
   text-align:center;
 
-  background:var(--card-bg);
-  border:1px solid var(--border);
-  box-shadow:var(--shadow);
+  background:#10244b;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 12px 35px rgba(0,0,0,.35);
 }
 
 .login-title{
@@ -958,9 +958,10 @@ button {
 .login-google-wrap{
   display:flex;
   justify-content:center;
-  padding:10px;
+  padding:14px;
   border-radius:999px;
-  background:rgba(255,255,255,.35);
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.06);
 }
 
 html.dark .login-google-wrap{
