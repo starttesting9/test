@@ -978,3 +978,76 @@ button {
   border-radius:999px;
   overflow:hidden;
 }
+
+/* ORDERS */
+.orders-list{
+  margin-top:10px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+
+  max-height:520px;
+  overflow-y:auto;
+  padding-right:4px;
+}
+
+.orders-list::-webkit-scrollbar{
+  width:6px;
+}
+
+.orders-list::-webkit-scrollbar-thumb{
+  background:rgba(120,120,120,.35);
+  border-radius:10px;
+}
+
+.order-card{
+  padding:14px;
+  border-radius:12px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.03);
+  backdrop-filter: blur(6px);
+}
+
+.order-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+
+  font-size:13px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.order-head span:first-child{
+  color:#60a5fa;
+}
+
+.order-head span:last-child{
+  color:var(--text-soft);
+  font-weight:600;
+}
+
+.order-title{
+  font-size:14px;
+  font-weight:700;
+  line-height:1.45;
+  margin-bottom:8px;
+  color:var(--text);
+}
+
+.order-text{
+  font-size:13px;
+  line-height:1.6;
+  color:var(--text-soft);
+}
+
+/* dark */
+html.dark .order-card{
+  background:rgba(255,255,255,.025);
+  border:1px solid rgba(255,255,255,.06);
+}
+
+html.dark .order-head span:first-child{
+  color:#93c5fd;
+}
