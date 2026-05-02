@@ -622,6 +622,7 @@ ${JSON.stringify(item.orders, null, 2)}
 
       details.style.maxHeight = details.scrollHeight + 'px';
     });
+}
 
 function loadMore() {
   const next = currentData.slice(visibleCount, visibleCount + 30);
