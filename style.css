@@ -1073,3 +1073,22 @@ html.dark .order-card:hover{
   top:6px;
   right:6px;
 }
+
+.order-right{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-shrink:0;
+}
+
+.order-copy-btn{
+  margin:0;
+  padding:4px 7px;
+  font-size:12px;
+  border-radius:7px;
+  opacity:.75;
+}
+
+.order-copy-btn:hover{
+  opacity:1;
+}
