@@ -386,6 +386,12 @@ function render(items, append = false) {
   }
 
   items.forEach((item) => {
+    if (item.ordersLoaded === undefined) {
+      item.ordersLoaded = false;
+      item.ordersLoading = false;
+      item.orders = [];
+      item.view = 'details';
+    }
     const div = document.createElement('div');
     div.className = 'card';
     div.dataset.index = currentData.indexOf(item);
@@ -421,11 +427,18 @@ function render(items, append = false) {
         ${STATUS_LABELS[item.status] || item.status}
       </div>
     
-      <div style="display:flex; gap:10px;">
-        <button class="action-btn" onclick="toggle(this)">
+      <div class="button-group">
+        <button class="action-btn" onclick="toggle(this, 'details')">
           Детальніше
         </button>
-        <button class="copy-all-btn" style="display:none;">📋 Копіювати</button>
+      
+        <button class="action-btn orders-btn" onclick="toggle(this, 'orders')">
+          📄 Стройові
+        </button>
+      
+        <button class="copy-all-btn" style="display:none;">
+          📋 Копіювати
+        </button>
       </div>
     
       <div class="details"></div>
