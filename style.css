@@ -1092,6 +1092,10 @@ html.dark .order-card:hover{
   box-shadow:0 0 0 2px rgba(77,163,255,.15);
 }
 
+.orders-btn{
+  position:relative;
+}
+
 .orders-btn.has-data::after{
   content:'';
   width:7px;
