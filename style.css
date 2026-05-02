@@ -1006,6 +1006,7 @@ button {
   border:1px solid var(--border);
   background:rgba(255,255,255,.03);
   backdrop-filter: blur(6px);
+  transition:.2s;
 }
 
 .order-head{
@@ -1029,8 +1030,8 @@ button {
 }
 
 .order-title{
-  font-size:14px;
-  font-weight:700;
+  font-size:13px;
+  font-weight:600;
   line-height:1.45;
   margin-bottom:8px;
   color:var(--text);
@@ -1052,7 +1053,11 @@ html.dark .order-head span:first-child{
   color:#93c5fd;
 }
 
-.tab-btn.active{
+html.dark .order-card:hover{
+  box-shadow:0 8px 20px rgba(0,0,0,.25);
+}
+
+.action-btn.active{
   border-color:#4da3ff;
   box-shadow:0 0 0 2px rgba(77,163,255,.15);
 }
