@@ -117,7 +117,7 @@ html.dark .copy-all-btn{
   background:#16a34a;
   color:white;
   border:none;
-  box-shadow:0 4px 14px rgba(22,163,74,.28);
+  box-shadow:none;
 }
 
 html.dark .copy-all-btn:hover{
@@ -493,8 +493,9 @@ button {
 }
 
 .copy-all-btn {
-  background:#2ecc71;
+  background:#22c55e;
   color:white;
+  box-shadow:none;
 }
 
 .dash-card {
@@ -992,11 +993,11 @@ button {
 }
 
 .orders-list::-webkit-scrollbar{
-  width:6px;
+  width:4px;
 }
 
 .orders-list::-webkit-scrollbar-thumb{
-  background:rgba(120,120,120,.35);
+  background:rgba(120,120,120,.18);
   border-radius:10px;
 }
 
@@ -1060,4 +1061,15 @@ html.dark .order-card:hover{
 .action-btn.active{
   border-color:#4da3ff;
   box-shadow:0 0 0 2px rgba(77,163,255,.15);
+}
+
+.orders-btn.has-data::after{
+  content:'';
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#22c55e;
+  position:absolute;
+  top:6px;
+  right:6px;
 }
