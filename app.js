@@ -1,5 +1,6 @@
 let data = [];
 let currentData = [];
+let authToken = '';
 let visibleCount = 30;
 let STATUS_LABELS = {};
 let FIELD_LABELS = {};
@@ -51,7 +52,8 @@ function handleCredentialResponse(response) {
 
   document.getElementById('loader').style.display = 'flex';
 
-  loadData(response.credential);
+  authToken = response.credential;
+  loadData(authToken);
 }
 
 function showError(title, text='') {
@@ -491,6 +493,38 @@ function getSearchCount() {
   return document.getElementById('searchCount');
 }
 
+async function fetchOrders(pib) {
+  const res = await fetch(
+    'https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify({
+        token: authToken,
+        pib
+      })
+    }
+  );
+
+  const result = await res.json();
+
+  if (result.error) {
+    if (
+      result.error.includes('Token verification')
+    ) {
+      alert('🔒 Сесія завершилась. Оновіть сторінку.');
+      location.reload();
+      return null;
+    }
+
+    throw new Error(result.error);
+  }
+
+  return result.orders || [];
+}
+
 function toggle(btn, mode = 'details') {
   const card = btn.closest('.card');
   const details = card.querySelector('.details');
@@ -520,7 +554,30 @@ function toggle(btn, mode = 'details') {
     return;
   }
 
-  // режим Стройові (тимчасова заглушка)
+  // режим Стройові
+  copyBtn.style.display = 'none';
+
+  // вже завантажено → покажемо кеш
+  if (item.ordersLoaded) {
+    details.innerHTML = `
+      <pre style="white-space:pre-wrap; font-size:13px;">
+${JSON.stringify(item.orders, null, 2)}
+      </pre>
+    `;
+
+    details.dataset.mode = 'orders';
+    details.classList.add('open');
+    details.style.maxHeight = details.scrollHeight + 'px';
+    return;
+  }
+
+  // вже вантажиться
+  if (item.ordersLoading) {
+    return;
+  }
+
+  item.ordersLoading = true;
+
   details.innerHTML = `
     <div style="
       padding:16px 0;
@@ -535,10 +592,37 @@ function toggle(btn, mode = 'details') {
   details.classList.add('open');
   details.style.maxHeight = details.scrollHeight + 'px';
 
-  copyBtn.style.display = 'none';
-}
+  fetchOrders(item.pib)
+    .then((orders) => {
+      item.orders = orders || [];
+      item.ordersLoaded = true;
+      item.ordersLoading = false;
 
-// підгрузка
+      details.innerHTML = `
+        <pre style="white-space:pre-wrap; font-size:13px;">
+${JSON.stringify(item.orders, null, 2)}
+        </pre>
+      `;
+
+      details.style.maxHeight = details.scrollHeight + 'px';
+    })
+    .catch((err) => {
+      console.error(err);
+
+      item.ordersLoading = false;
+
+      details.innerHTML = `
+        <div style="
+          padding:16px 0;
+          color:#ff6b6b;
+        ">
+          ⚠️ Помилка завантаження
+        </div>
+      `;
+
+      details.style.maxHeight = details.scrollHeight + 'px';
+    });
+
 function loadMore() {
   const next = currentData.slice(visibleCount, visibleCount + 30);
   if (next.length === 0) return;
@@ -547,14 +631,12 @@ function loadMore() {
   visibleCount += 30;
 }
 
-// скрол
 window.addEventListener('scroll', () => {
   if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 100) {
     loadMore();
   }
 });
 
-// пошук
 const searchInput = document.getElementById('search');
 const clearBtn = document.getElementById('clearSearch');
 
