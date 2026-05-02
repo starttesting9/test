@@ -435,7 +435,7 @@ function render(items, append = false) {
         </button>
       
         <button class="action-btn orders-btn" onclick="toggle(this, 'orders')">
-          📄 Стройові
+          📄 Стройові${item.ordersLoaded ? ` (${item.orders.length})` : ''}
         </button>
       
         <button class="copy-all-btn" style="display:none;">
