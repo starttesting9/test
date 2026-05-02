@@ -491,7 +491,7 @@ function getSearchCount() {
   return document.getElementById('searchCount');
 }
 
-function toggle(btn) {
+function toggle(btn, mode = 'details') {
   const card = btn.closest('.card');
   const details = card.querySelector('.details');
   const copyBtn = card.querySelector('.copy-all-btn');
@@ -499,21 +499,43 @@ function toggle(btn) {
   const index = card.dataset.index;
   const item = currentData[index];
 
-  const isOpen = details.classList.contains('open');
+  const buttons = card.querySelectorAll('.action-btn');
+  buttons.forEach(b => b.classList.remove('active'));
 
-  if (!details.innerHTML) {
-    details.innerHTML = buildDetailsHTML(item);
-  }
+  btn.classList.add('active');
 
-  if (isOpen) {
-    details.style.maxHeight = null;
-    details.classList.remove('open');
-    copyBtn.style.display = 'none';
-  } else {
+  item.view = mode;
+
+  // режим Детальніше
+  if (mode === 'details') {
+    if (!details.innerHTML || details.dataset.mode !== 'details') {
+      details.innerHTML = buildDetailsHTML(item);
+      details.dataset.mode = 'details';
+    }
+
     details.classList.add('open');
     details.style.maxHeight = details.scrollHeight + 'px';
+
     copyBtn.style.display = 'inline-block';
+    return;
   }
+
+  // режим Стройові (тимчасова заглушка)
+  details.innerHTML = `
+    <div style="
+      padding:16px 0;
+      opacity:.85;
+      font-size:14px;
+    ">
+      ⏳ Завантаження історії наказів...
+    </div>
+  `;
+
+  details.dataset.mode = 'orders';
+  details.classList.add('open');
+  details.style.maxHeight = details.scrollHeight + 'px';
+
+  copyBtn.style.display = 'none';
 }
 
 // підгрузка
