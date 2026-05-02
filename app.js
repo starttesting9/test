@@ -507,8 +507,22 @@ function renderOrdersHTML(orders) {
       ${orders.map(order => `
         <div class="order-card">
           <div class="order-head">
+
             <span>📄 Наказ №${order.orderNumber}</span>
-            <span>${order.date}</span>
+
+            <div class="order-right">
+              <span>${order.date}</span>
+
+              <button
+                class="copy-btn order-copy-btn"
+                data-order="${encodeURIComponent(
+                  `Наказ №${order.orderNumber} від ${order.date}\n\n${order.title}\n\n${order.text}`
+                )}"
+              >
+                📋
+              </button>
+            </div>
+
           </div>
 
           <div class="order-title">
@@ -871,6 +885,15 @@ async function loadData(token) {
 }
   
 document.addEventListener('click', function(e) {
+
+  if (e.target.classList.contains('order-copy-btn')) {
+    const text = decodeURIComponent(
+      e.target.dataset.order
+    );
+  
+    copyText(text);
+    return;
+  }
 
   // копіювання одного поля
   if (e.target.classList.contains('copy-btn')) {
