@@ -493,6 +493,37 @@ function getSearchCount() {
   return document.getElementById('searchCount');
 }
 
+function renderOrdersHTML(orders) {
+  if (!orders || !orders.length) {
+    return `
+      <div class="orders-empty">
+        📭 Дані по стройових наказах відсутні
+      </div>
+    `;
+  }
+
+  return `
+    <div class="orders-list">
+      ${orders.map(order => `
+        <div class="order-card">
+          <div class="order-head">
+            <span>📄 Наказ №${order.orderNumber}</span>
+            <span>${order.date}</span>
+          </div>
+
+          <div class="order-title">
+            ${order.title}
+          </div>
+
+          <div class="order-text">
+            ${order.text}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
 async function fetchOrders(pib) {
   const res = await fetch(
     'https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec',
@@ -560,12 +591,7 @@ function toggle(btn, mode = 'details') {
 
   // вже завантажено → покажемо кеш
   if (item.ordersLoaded) {
-    details.innerHTML = `
-      <pre style="white-space:pre-wrap; font-size:13px;">
-${JSON.stringify(item.orders, null, 2)}
-      </pre>
-    `;
-
+    details.innerHTML = renderOrdersHTML(item.orders);
     details.dataset.mode = 'orders';
     details.classList.add('open');
     details.style.maxHeight = details.scrollHeight + 'px';
@@ -598,13 +624,7 @@ ${JSON.stringify(item.orders, null, 2)}
       item.orders = orders || [];
       item.ordersLoaded = true;
       item.ordersLoading = false;
-
-      details.innerHTML = `
-        <pre style="white-space:pre-wrap; font-size:13px;">
-${JSON.stringify(item.orders, null, 2)}
-        </pre>
-      `;
-
+      details.innerHTML = renderOrdersHTML(item.orders);
       details.style.maxHeight = details.scrollHeight + 'px';
     })
     .catch((err) => {
