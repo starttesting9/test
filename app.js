@@ -623,6 +623,9 @@ function toggle(btn, mode = 'details') {
     .then((orders) => {
       item.orders = orders || [];
       item.ordersLoaded = true;
+      const ordersBtn = card.querySelector('.orders-btn');
+      ordersBtn.innerHTML =
+        `📄 Стройові (${item.orders.length})`;
       item.ordersLoading = false;
       details.innerHTML = renderOrdersHTML(item.orders);
       details.style.maxHeight = details.scrollHeight + 'px';
