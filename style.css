@@ -634,15 +634,6 @@ button {
     grid-template-columns: 1fr 1.3fr 1.7fr;
     align-items: start;
   }
-  .today-list.open::-webkit-scrollbar-thumb,
-  .bd-content::-webkit-scrollbar-thumb {
-    background: transparent;
-    transition: background 0.25s ease;
-  }
-
-  .show-scroll::-webkit-scrollbar-thumb {
-    background: #ccc !important;
-  }
 }
   
 .bd-header {
@@ -716,6 +707,27 @@ button {
 
 .bd-content::-webkit-scrollbar {
   width: 5px;
+}
+
+.bd-content::-webkit-scrollbar-track{
+  background:transparent;
+}
+
+.bd-content::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.14);
+  border-radius:10px;
+}
+
+.bd-content:hover::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.28);
+}
+
+html:not(.dark) .bd-content::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,.18);
+}
+
+html:not(.dark) .bd-content:hover::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,.28);
 }
 
 .today-item {
