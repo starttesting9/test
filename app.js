@@ -571,6 +571,21 @@ async function fetchOrders(pib) {
   return result.orders || [];
 }
 
+async function switchDetailsContent(details, html) {
+  details.style.opacity = '0';
+  details.style.transform = 'translateY(6px)';
+
+  await new Promise(r => setTimeout(r, 120));
+
+  details.innerHTML = html;
+
+  requestAnimationFrame(() => {
+    details.style.maxHeight = details.scrollHeight + 'px';
+    details.style.opacity = '1';
+    details.style.transform = 'translateY(0)';
+  });
+}
+
 function toggle(btn, mode = 'details') {
   const card = btn.closest('.card');
   const details = card.querySelector('.details');
@@ -581,45 +596,42 @@ function toggle(btn, mode = 'details') {
 
   const buttons = card.querySelectorAll('.action-btn');
   buttons.forEach(b => b.classList.remove('active'));
-
   btn.classList.add('active');
 
   item.view = mode;
+  details.classList.add('open');
 
-  // режим Детальніше
+  // Детальніше
   if (mode === 'details') {
-    if (!details.innerHTML || details.dataset.mode !== 'details') {
-      details.innerHTML = buildDetailsHTML(item);
-      details.dataset.mode = 'details';
-    }
-
-    details.classList.add('open');
-    details.style.maxHeight = details.scrollHeight + 'px';
-
     copyBtn.style.display = 'inline-block';
+
+    switchDetailsContent(
+      details,
+      buildDetailsHTML(item)
+    );
+
+    details.dataset.mode = 'details';
     return;
   }
 
-  // режим Стройові
+  // Стройові
   copyBtn.style.display = 'none';
 
-  // вже завантажено → покажемо кеш
   if (item.ordersLoaded) {
-    details.innerHTML = renderOrdersHTML(item.orders);
+    switchDetailsContent(
+      details,
+      renderOrdersHTML(item.orders)
+    );
+
     details.dataset.mode = 'orders';
-    details.classList.add('open');
-    details.style.maxHeight = details.scrollHeight + 'px';
     return;
   }
 
-  // вже вантажиться
-  if (item.ordersLoading) {
-    return;
-  }
+  if (item.ordersLoading) return;
 
   item.ordersLoading = true;
 
-  details.innerHTML = `
+  switchDetailsContent(details, `
     <div style="
       padding:16px 0;
       opacity:.85;
@@ -627,41 +639,41 @@ function toggle(btn, mode = 'details') {
     ">
       ⏳ Завантаження історії наказів...
     </div>
-  `;
+  `);
 
   details.dataset.mode = 'orders';
-  details.classList.add('open');
-  details.style.maxHeight = details.scrollHeight + 'px';
 
   fetchOrders(item.pib)
     .then((orders) => {
       item.orders = orders || [];
       item.ordersLoaded = true;
+      item.ordersLoading = false;
+
       const ordersBtn = card.querySelector('.orders-btn');
       ordersBtn.innerHTML =
         `📄 Стройові (${item.orders.length})`;
+
       if (item.orders.length > 0) {
         ordersBtn.classList.add('has-data');
       }
-      item.ordersLoading = false;
-      details.innerHTML = renderOrdersHTML(item.orders);
-      details.style.maxHeight = details.scrollHeight + 'px';
+
+      switchDetailsContent(
+        details,
+        renderOrdersHTML(item.orders)
+      );
     })
     .catch((err) => {
       console.error(err);
-
       item.ordersLoading = false;
 
-      details.innerHTML = `
+      switchDetailsContent(details, `
         <div style="
           padding:16px 0;
           color:#ff6b6b;
         ">
           ⚠️ Помилка завантаження
         </div>
-      `;
-
-      details.style.maxHeight = details.scrollHeight + 'px';
+      `);
     });
 }
 
