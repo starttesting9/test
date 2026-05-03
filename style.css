@@ -1185,8 +1185,7 @@ html.dark .order-card:hover{
   height:10px;
   border-radius:50%;
   background:#ff6b00;
-  box-shadow:0 0 12px rgba(46,204,113,.6);
-  animation:pulseDot 1s infinite ease-in-out;
+  animation:pulseDot 1.5s infinite ease-in-out;
 }
 
 @keyframes pulseDot{
