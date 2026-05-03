@@ -160,8 +160,14 @@ function renderBirthdays(items) {
   const todayHTML = today.length ? `
   <div class="today-block ui-today">
 
-    <div class="today-title">
-      🥳 Сьогодні (${today.length})
+    <div class="today-title-row">
+      <div class="today-title">
+        🥳 Сьогодні (${today.length})
+      </div>
+    
+      <div class="today-date">
+        ${window.todayDateShort}
+      </div>
     </div>
 
     <div class="today-list ui-list">
@@ -898,6 +904,10 @@ async function loadData(token) {
     render(currentData.slice(0, visibleCount));
     updateDashboard(data);
     updateMarksChart(data);
+    const now = new Date();
+    const dd = String(now.getDate()).padStart(2, '0');
+    const mm = String(now.getMonth() + 1).padStart(2, '0');
+    window.todayDateShort = `${dd}.${mm}`;
     renderBirthdays(result.birthdays);
     initAutoHideScroll();
 
