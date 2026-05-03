@@ -813,6 +813,16 @@ button {
   margin-bottom: 6px;
 }
 
+.today-list.open::-webkit-scrollbar-thumb{
+  background: transparent;
+  border-radius: 10px;
+  transition: background .25s ease;
+}
+
+.today-list.open.show-scroll::-webkit-scrollbar-thumb{
+  background: #ccc;
+}
+
 .ui-today {
   background: #fff4e5;
   border-radius: 10px;
