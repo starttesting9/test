@@ -650,12 +650,9 @@ function toggle(btn, mode = 'details') {
   item.ordersLoading = true;
 
   switchDetailsContent(details, `
-    <div style="
-      padding:16px 0;
-      opacity:.85;
-      font-size:14px;
-    ">
-      ⏳ Завантаження історії наказів...
+    <div class="inline-loader">
+      <div class="inline-loader-dot"></div>
+      <span>Завантаження історії наказів...</span>
     </div>
   `);
 
