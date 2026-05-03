@@ -1207,9 +1207,9 @@ html.dark .order-card:hover{
 }
 
 .today-date{
-  font-size:11px;
+  font-size:10px;
   color:var(--text-soft);
-  opacity:.75;
+  opacity: .55;
   font-weight:500;
   white-space:nowrap;
 }
