@@ -595,9 +595,27 @@ function toggle(btn, mode = 'details') {
   const item = currentData[index];
 
   const buttons = card.querySelectorAll('.action-btn');
+  const isSameTab =
+    details.classList.contains('open') &&
+    details.dataset.mode === mode;
+  
+  // якщо натиснули ту саму вкладку → згортаємо
+  if (isSameTab) {
+    details.classList.remove('open');
+    details.style.maxHeight = '0px';
+    details.style.opacity = '0';
+    details.style.transform = 'translateY(-6px)';
+  
+    buttons.forEach(b => b.classList.remove('active'));
+    copyBtn.style.display = 'none';
+  
+    return;
+  }
+  
+  // інакше відкриваємо / переключаємо
   buttons.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-
+  
   item.view = mode;
   details.classList.add('open');
 
