@@ -801,26 +801,29 @@ button {
   box-sizing: border-box;
 }
 
-.today-list.open::-webkit-scrollbar {
-  width: 5px;
+.today-list.open::-webkit-scrollbar{
+  width:4px;
 }
 
-.today-list.open::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.today-title {
-  margin-bottom: 6px;
+.today-list.open::-webkit-scrollbar-track{
+  background:transparent;
 }
 
 .today-list.open::-webkit-scrollbar-thumb{
-  background: transparent;
-  border-radius: 10px;
-  transition: background .25s ease;
+  background:rgba(255,255,255,.14);
+  border-radius:10px;
 }
 
-.today-list.open.show-scroll::-webkit-scrollbar-thumb{
-  background: #ccc;
+.today-list.open:hover::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,.28);
+}
+
+html:not(.dark) .today-list.open::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,.18);
+}
+
+html:not(.dark) .today-list.open:hover::-webkit-scrollbar-thumb{
+  background:rgba(0,0,0,.28);
 }
 
 .ui-today {
@@ -924,7 +927,7 @@ button {
 
 .theme-toggle{
   position:absolute;
-  top:8px;
+  top:4px;
   right:18px;
 
   width:30px;
@@ -1021,7 +1024,7 @@ button {
 }
 
 .orders-list::-webkit-scrollbar{
-  width:3px;
+  width:4px;
 }
 
 .orders-list::-webkit-scrollbar-thumb{
