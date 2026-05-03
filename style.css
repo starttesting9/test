@@ -1198,3 +1198,18 @@ html.dark .order-card:hover{
     opacity:1;
   }
 }
+
+.today-title-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
+
+.today-date{
+  font-size:11px;
+  color:var(--text-soft);
+  opacity:.75;
+  font-weight:500;
+  white-space:nowrap;
+}
