@@ -657,7 +657,9 @@ function toggle(btn, mode = 'details') {
 
   switchDetailsContent(details, `
     <div class="inline-loader">
-      <div class="inline-loader-dot"></div>
+      <div class="inline-loader-wrap">
+        <div class="inline-loader-dot"></div>
+      </div>
       <span>Завантаження історії наказів...</span>
     </div>
   `);
