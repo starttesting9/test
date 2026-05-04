@@ -1180,14 +1180,20 @@ html.dark .order-card:hover{
   font-size:14px;
 }
 
+.inline-loader-wrap{
+  width:18px;
+  height:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-shrink:0;
+}
+
 .inline-loader-dot{
   width:10px;
   height:10px;
   border-radius:50%;
   background:#ff6b00;
-  margin-left:4px;
-  margin-right:2px;
-  flex-shrink:0;
   animation:pulseDot 1.5s infinite ease-in-out;
 }
 
