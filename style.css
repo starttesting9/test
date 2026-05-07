@@ -1222,3 +1222,27 @@ html.dark .order-card:hover{
   font-weight:500;
   white-space:nowrap;
 }
+
+.order-link{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  text-decoration:none;
+  color:#60a5fa;
+  font-weight:600;
+  transition:.2s;
+}
+
+.order-link:hover{
+  opacity:.85;
+  transform:translateY(-1px);
+}
+
+.order-link-icon{
+  font-size:11px;
+  opacity:.7;
+}
+
+html.dark .order-link{
+  color:#93c5fd;
+}
