@@ -514,7 +514,23 @@ function renderOrdersHTML(orders) {
         <div class="order-card">
           <div class="order-head">
 
-            <span>📄 Наказ №${order.orderNumber}</span>
+            ${
+              order.file?.url
+                ? `
+                  <a
+                    href="${order.file.url}"
+                    target="_blank"
+                    class="order-link"
+                    title="Відкрити файл наказу"
+                  >
+                    📄 Наказ №${order.orderNumber}
+                    <span class="order-link-icon">↗</span>
+                  </a>
+                `
+                : `
+                  <span>📄 Наказ №${order.orderNumber}</span>
+                `
+            }
 
             <div class="order-right">
               <span>${order.date}</span>
