@@ -191,8 +191,22 @@ function renderBirthdays(items) {
 
   </div>
 ` : `
-  <div class="today-empty">
-    Сьогодні немає 🎉
+  <div class="today-block ui-today">
+
+    <div class="today-title-row">
+      <div class="today-title">
+        🎉 Сьогодні
+      </div>
+
+      <div class="today-date">
+        ${window.todayDateShort}
+      </div>
+    </div>
+
+    <div class="today-empty">
+      немає днів народження
+    </div>
+
   </div>
 `;
 
