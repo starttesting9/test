@@ -452,6 +452,10 @@ function render(items, append = false) {
         <button class="action-btn orders-btn" onclick="toggle(this, 'orders')">
           📄 Стройові${item.ordersLoaded ? ` (${item.orders.length})` : ''}
         </button>
+
+        <button class="action-btn social-btn" onclick="toggle(this, 'social')">
+          👤 Соц. дані
+        </button>
       
         <button class="copy-all-btn" style="display:none;">
           📋 Копіювати
@@ -569,6 +573,48 @@ function renderOrdersHTML(orders) {
   `;
 }
 
+function renderSocialHTML(social) {
+
+  if (!social?.found) {
+    return `
+      <div class="orders-empty">
+        👤 Соціальні дані відсутні
+      </div>
+    `;
+  }
+
+  const data = social.data || {};
+
+  return `
+    <div class="orders-list">
+      ${Object.entries(data).map(([key, value]) => {
+
+        const safeValue = String(value)
+          .replace(/\r?\n/g, '<br>');
+
+        return `
+          <div class="detail-row">
+            <span class="detail-key">${key}</span>
+
+            <div class="detail-value">
+              <span class="copy-text">
+                ${safeValue}
+              </span>
+
+              <button
+                class="copy-btn"
+                data-text="${encodeURIComponent(value)}"
+              >
+                📋
+              </button>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
 async function fetchOrders(pib) {
   const res = await fetch(
     'https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec',
@@ -602,6 +648,34 @@ async function fetchOrders(pib) {
   return result.orders || [];
 }
 
+async function fetchSocial(pib) {
+  const res = await fetch(
+    'https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'text/plain;charset=utf-8',
+      },
+      body: JSON.stringify({
+        action: 'social',
+        token: authToken,
+        pib
+      })
+    }
+  );
+
+  const result = await res.json();
+
+  if (result.error) {
+    throw new Error(result.error);
+  }
+
+  return result.social || {
+    found: false,
+    data: {}
+  };
+}
+
 async function switchDetailsContent(details, html) {
   details.style.opacity = '0';
   details.style.transform = 'translateY(6px)';
@@ -630,7 +704,6 @@ function toggle(btn, mode = 'details') {
     details.classList.contains('open') &&
     details.dataset.mode === mode;
   
-  // якщо натиснули ту саму вкладку → згортаємо
   if (isSameTab) {
     details.classList.remove('open');
     details.style.maxHeight = '0px';
@@ -643,14 +716,12 @@ function toggle(btn, mode = 'details') {
     return;
   }
   
-  // інакше відкриваємо / переключаємо
   buttons.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   
   item.view = mode;
   details.classList.add('open');
 
-  // Детальніше
   if (mode === 'details') {
     copyBtn.style.display = 'inline-block';
 
@@ -663,7 +734,6 @@ function toggle(btn, mode = 'details') {
     return;
   }
 
-  // Стройові
   copyBtn.style.display = 'none';
 
   if (item.ordersLoaded) {
@@ -685,7 +755,7 @@ function toggle(btn, mode = 'details') {
       <div class="inline-loader-wrap">
         <div class="inline-loader-dot"></div>
       </div>
-      <span>Завантаження історії наказів...</span>
+      <span>Завантаження історії...</span>
     </div>
   `);
 
@@ -723,6 +793,74 @@ function toggle(btn, mode = 'details') {
         </div>
       `);
     });
+
+  if (mode === 'social') {
+  
+    copyBtn.style.display = 'none';
+  
+    if (item.socialLoaded) {
+  
+      switchDetailsContent(
+        details,
+        renderSocialHTML(item.social)
+      );
+  
+      details.dataset.mode = 'social';
+      return;
+    }
+  
+    if (item.socialLoading) return;
+  
+    item.socialLoading = true;
+  
+    switchDetailsContent(details, `
+      <div class="inline-loader">
+        <div class="inline-loader-wrap">
+          <div class="inline-loader-dot"></div>
+        </div>
+        <span>Завантаження даних...</span>
+      </div>
+    `);
+  
+    details.dataset.mode = 'social';
+  
+    fetchSocial(item.pib)
+      .then((social) => {
+  
+        item.social = social;
+        item.socialLoaded = true;
+        item.socialLoading = false;
+  
+        const socialBtn =
+          card.querySelector('.social-btn');
+  
+        if (social?.found) {
+          socialBtn.classList.add('has-data');
+        }
+  
+        switchDetailsContent(
+          details,
+          renderSocialHTML(social)
+        );
+      })
+      .catch((err) => {
+  
+        console.error(err);
+  
+        item.socialLoading = false;
+  
+        switchDetailsContent(details, `
+          <div style="
+            padding:16px 0;
+            color:#ff6b6b;
+          ">
+            ⚠️ Помилка завантаження
+          </div>
+        `);
+      });
+  
+    return;
+  }
 }
 
 function loadMore() {
