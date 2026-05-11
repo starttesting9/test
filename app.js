@@ -453,7 +453,7 @@ function render(items, append = false) {
         </button>
 
         <button class="action-btn social-btn" onclick="toggle(this, 'social')">
-          👤 Соц. дані
+          🗂️ Соц. дані
         </button>
       
         <button class="copy-all-btn" style="display:none;">
@@ -577,7 +577,7 @@ function renderSocialHTML(social) {
   if (!social?.found) {
     return `
       <div class="orders-empty">
-        👤 Соціальні дані відсутні
+        🗂️ Соціальні дані відсутні
       </div>
     `;
   }
