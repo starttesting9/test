@@ -586,7 +586,7 @@ function renderSocialHTML(social) {
   const data = social.data || {};
 
   return `
-    <div class="orders-list">
+    <div class="social-list">
       ${Object.entries(data).map(([key, value]) => {
 
         const safeValue = String(value)
