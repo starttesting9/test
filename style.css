@@ -1021,6 +1021,14 @@ html:not(.dark) .orders-list:hover::-webkit-scrollbar-thumb{
   padding-right:4px;
 }
 
+.social-list{
+  margin-top:14px;
+  display:flex;
+  flex-direction:column;
+  gap:2px;
+  animation:fadeInUp .22s ease;
+}
+
 .orders-list::-webkit-scrollbar{
   width:4px;
 }
