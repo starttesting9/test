@@ -1246,3 +1246,14 @@ html.dark .order-card:hover{
 html.dark .order-link{
   color:#93c5fd;
 }
+
+.social-btn.has-data::after{
+  content:'';
+  width:7px;
+  height:7px;
+  border-radius:50%;
+  background:#22c55e;
+  position:absolute;
+  top:6px;
+  right:6px;
+}
