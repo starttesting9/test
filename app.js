@@ -379,7 +379,6 @@ function getRankImage(item) {
 
   if (!rank) return '';
 
-  // точний збіг
   if (RANKS[rank]) {
     return RANKS[rank];
   }
