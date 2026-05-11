@@ -692,6 +692,7 @@ async function switchDetailsContent(details, html) {
 }
 
 function toggle(btn, mode = 'details') {
+
   const card = btn.closest('.card');
   const details = card.querySelector('.details');
   const copyBtn = card.querySelector('.copy-all-btn');
@@ -700,29 +701,37 @@ function toggle(btn, mode = 'details') {
   const item = currentData[index];
 
   const buttons = card.querySelectorAll('.action-btn');
+
   const isSameTab =
     details.classList.contains('open') &&
     details.dataset.mode === mode;
-  
+
+  // закриття
   if (isSameTab) {
+
     details.classList.remove('open');
+
     details.style.maxHeight = '0px';
     details.style.opacity = '0';
     details.style.transform = 'translateY(-6px)';
-  
+
     buttons.forEach(b => b.classList.remove('active'));
+
     copyBtn.style.display = 'none';
-  
+
     return;
   }
-  
+
+  // активна кнопка
   buttons.forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
-  
+
   item.view = mode;
+
   details.classList.add('open');
 
   if (mode === 'details') {
+
     copyBtn.style.display = 'inline-block';
 
     switchDetailsContent(
@@ -731,124 +740,69 @@ function toggle(btn, mode = 'details') {
     );
 
     details.dataset.mode = 'details';
+
     return;
   }
 
-  copyBtn.style.display = 'none';
+  if (mode === 'orders') {
 
-  if (item.ordersLoaded) {
-    switchDetailsContent(
-      details,
-      renderOrdersHTML(item.orders)
-    );
+    copyBtn.style.display = 'none';
 
-    details.dataset.mode = 'orders';
-    return;
-  }
-
-  if (item.ordersLoading) return;
-
-  item.ordersLoading = true;
-
-  switchDetailsContent(details, `
-    <div class="inline-loader">
-      <div class="inline-loader-wrap">
-        <div class="inline-loader-dot"></div>
-      </div>
-      <span>Завантаження історії...</span>
-    </div>
-  `);
-
-  details.dataset.mode = 'orders';
-
-  fetchOrders(item.pib)
-    .then((orders) => {
-      item.orders = orders || [];
-      item.ordersLoaded = true;
-      item.ordersLoading = false;
-
-      const ordersBtn = card.querySelector('.orders-btn');
-      ordersBtn.innerHTML =
-        `📄 Стройові (${item.orders.length})`;
-
-      if (item.orders.length > 0) {
-        ordersBtn.classList.add('has-data');
-      }
+    if (item.ordersLoaded) {
 
       switchDetailsContent(
         details,
         renderOrdersHTML(item.orders)
       );
-    })
-    .catch((err) => {
-      console.error(err);
-      item.ordersLoading = false;
 
-      switchDetailsContent(details, `
-        <div style="
-          padding:16px 0;
-          color:#ff6b6b;
-        ">
-          ⚠️ Помилка завантаження
-        </div>
-      `);
-    });
+      details.dataset.mode = 'orders';
 
-  if (mode === 'social') {
-  
-    copyBtn.style.display = 'none';
-  
-    if (item.socialLoaded) {
-  
-      switchDetailsContent(
-        details,
-        renderSocialHTML(item.social)
-      );
-  
-      details.dataset.mode = 'social';
       return;
     }
-  
-    if (item.socialLoading) return;
-  
-    item.socialLoading = true;
-  
+
+    if (item.ordersLoading) return;
+
+    item.ordersLoading = true;
+
     switchDetailsContent(details, `
       <div class="inline-loader">
         <div class="inline-loader-wrap">
           <div class="inline-loader-dot"></div>
         </div>
-        <span>Завантаження даних...</span>
+        <span>Завантаження історії...</span>
       </div>
     `);
-  
-    details.dataset.mode = 'social';
-  
-    fetchSocial(item.pib)
-      .then((social) => {
-  
-        item.social = social;
-        item.socialLoaded = true;
-        item.socialLoading = false;
-  
-        const socialBtn =
-          card.querySelector('.social-btn');
-  
-        if (social?.found) {
-          socialBtn.classList.add('has-data');
+
+    details.dataset.mode = 'orders';
+
+    fetchOrders(item.pib)
+      .then((orders) => {
+
+        item.orders = orders || [];
+        item.ordersLoaded = true;
+        item.ordersLoading = false;
+
+        const ordersBtn =
+          card.querySelector('.orders-btn');
+
+        ordersBtn.innerHTML =
+          `📄 Стройові (${item.orders.length})`;
+
+        if (item.orders.length > 0) {
+          ordersBtn.classList.add('has-data');
         }
-  
+
         switchDetailsContent(
           details,
-          renderSocialHTML(social)
+          renderOrdersHTML(item.orders)
         );
       })
       .catch((err) => {
-  
+
         console.error(err);
-  
-        item.socialLoading = false;
-  
+
+        item.ordersLoading = false;
+
         switchDetailsContent(details, `
           <div style="
             padding:16px 0;
@@ -858,7 +812,76 @@ function toggle(btn, mode = 'details') {
           </div>
         `);
       });
-  
+
+    return;
+  }
+
+  if (mode === 'social') {
+
+    copyBtn.style.display = 'none';
+
+    if (item.socialLoaded) {
+
+      switchDetailsContent(
+        details,
+        renderSocialHTML(item.social)
+      );
+
+      details.dataset.mode = 'social';
+
+      return;
+    }
+
+    if (item.socialLoading) return;
+
+    item.socialLoading = true;
+
+    switchDetailsContent(details, `
+      <div class="inline-loader">
+        <div class="inline-loader-wrap">
+          <div class="inline-loader-dot"></div>
+        </div>
+        <span>Завантаження даних...</span>
+      </div>
+    `);
+
+    details.dataset.mode = 'social';
+
+    fetchSocial(item.pib)
+      .then((social) => {
+
+        item.social = social;
+        item.socialLoaded = true;
+        item.socialLoading = false;
+
+        const socialBtn =
+          card.querySelector('.social-btn');
+
+        if (social?.found) {
+          socialBtn.classList.add('has-data');
+        }
+
+        switchDetailsContent(
+          details,
+          renderSocialHTML(social)
+        );
+      })
+      .catch((err) => {
+
+        console.error(err);
+
+        item.socialLoading = false;
+
+        switchDetailsContent(details, `
+          <div style="
+            padding:16px 0;
+            color:#ff6b6b;
+          ">
+            ⚠️ Помилка завантаження
+          </div>
+        `);
+      });
+
     return;
   }
 }
