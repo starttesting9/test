@@ -1290,17 +1290,6 @@ html.dark .social-photo-placeholder{
 }
 
 .social-photo-placeholder{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  color:var(--text-soft);
-
-  font-size:32px;
-  font-weight:600;
-
-  text-align:center;
-
   overflow:hidden;
 }
 
