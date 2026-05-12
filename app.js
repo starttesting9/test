@@ -600,56 +600,48 @@ function renderSocialHTML(social) {
       .filter(([key]) => key !== 'Лінк на фото');
 
   return `
-    <div class="social-layout">
+    <div class="social-block">
 
-      <div class="social-photo-wrap">
+      ${
+        photoUrl
+          ? `
+            <img
+              src="${photoUrl}"
+              class="social-photo"
+              alt="Фото">
+          `
+          : `
+            <div class="social-photo-placeholder">
+              🪪
+            </div>
+          `
+      }
 
-        ${
-          photoUrl
-            ? `
-              <img
-                src="${photoUrl}"
-                class="social-photo"
-                alt="Фото">
-            `
-            : `
-              <div class="social-photo-placeholder">
-                🪪
+      <div class="social-list">
+        ${filteredEntries.map(([key, value]) => {
+
+          const safeValue = String(value)
+            .replace(/\r?\n/g, '<br>');
+
+          return `
+            <div class="detail-row">
+              <span class="detail-key">${key}</span>
+
+              <div class="detail-value">
+                <span class="copy-text">
+                  ${safeValue}
+                </span>
+
+                <button
+                  class="copy-btn"
+                  data-text="${encodeURIComponent(value)}"
+                >
+                  📋
+                </button>
               </div>
-            `
-        }
-
-      </div>
-
-      <div class="social-content">
-
-        <div class="social-list">
-          ${filteredEntries.map(([key, value]) => {
-
-            const safeValue = String(value)
-              .replace(/\r?\n/g, '<br>');
-
-            return `
-              <div class="detail-row">
-                <span class="detail-key">${key}</span>
-
-                <div class="detail-value">
-                  <span class="copy-text">
-                    ${safeValue}
-                  </span>
-
-                  <button
-                    class="copy-btn"
-                    data-text="${encodeURIComponent(value)}"
-                  >
-                    📋
-                  </button>
-                </div>
-              </div>
-            `;
-          }).join('')}
-        </div>
-
+            </div>
+          `;
+        }).join('')}
       </div>
 
     </div>
