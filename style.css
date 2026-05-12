@@ -1289,22 +1289,11 @@ html.dark .social-photo-placeholder{
     0 4px 14px rgba(0,0,0,.18);
 }
 
-html:not(.dark) .social-photo-placeholder{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(0,0,0,.025),
-      rgba(0,0,0,.01)
-    );
-}
-
 .social-photo-placeholder{
-  background:
-    linear-gradient(
-      135deg,
-      rgba(255,255,255,.04),
-      rgba(255,255,255,.01)
-    );
+  background:transparent;
+  border-style:dashed;
+  opacity:.45;
+  margin-right:12px;
 }
 
 @media (max-width:768px){
