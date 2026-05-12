@@ -1298,10 +1298,18 @@ html.dark .social-photo-placeholder{
 }
 
 .social-photo-placeholder::after{
-  content:'';
-  display:block;
+  content:'📷';
+
   width:100%;
   height:100%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:34px;
+
+  opacity:.22;
 }
 
 html:not(.dark) .social-photo-placeholder{
