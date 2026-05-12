@@ -612,7 +612,7 @@ function renderSocialHTML(social) {
           `
           : `
             <div class="social-photo-placeholder">
-              🪪
+              Фото
             </div>
           `
       }
