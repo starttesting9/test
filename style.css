@@ -1266,16 +1266,6 @@ html.dark .order-link{
   right:6px;
 }
 
-.social-layout{
-  display:flex;
-  gap:18px;
-  align-items:flex-start;
-}
-
-.social-photo-wrap{
-  flex-shrink:0;
-}
-
 .social-photo{
   width:100px;
   height:135px;
@@ -1311,9 +1301,30 @@ html.dark .order-link{
   opacity:.55;
 }
 
-.social-content{
-  flex:1;
-  min-width:0;
+.social-block{
+  overflow:hidden;
+}
+
+.social-photo,
+.social-photo-placeholder{
+  float:left;
+
+  width:100px;
+  height:135px;
+
+  margin-right:16px;
+  margin-bottom:10px;
+
+  border-radius:12px;
+
+  object-fit:cover;
+
+  background:#1e293b;
+
+  border:1px solid rgba(255,255,255,.08);
+
+  box-shadow:
+    0 4px 14px rgba(0,0,0,.18);
 }
 
 @media (max-width:768px){
