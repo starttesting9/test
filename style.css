@@ -1025,11 +1025,6 @@ html:not(.dark) .orders-list:hover::-webkit-scrollbar-thumb{
   margin-top:14px;
   display:block;
   animation:fadeInUp .22s ease;
-  overflow:hidden;
-}
-
-.social-list .detail-value{
-  display:block;
 }
 
 .orders-list::-webkit-scrollbar{
@@ -1295,16 +1290,16 @@ html.dark .social-photo-placeholder{
 }
 
 .social-photo-placeholder{
-  background:rgba(255,255,255,.025);
-  border:1px solid rgba(255,255,255,.06);
-  opacity:.9;
+  background:rgba(255,255,255,.04);
+  border:1px dashed rgba(255,255,255,.10);
   margin-right:16px;
-  position:relative;
+  margin-bottom:10px;
+  opacity:1;
 }
 
 html:not(.dark) .social-photo-placeholder{
-  background:rgba(0,0,0,.02);
-  border:1px solid rgba(0,0,0,.06);
+  background:rgba(0,0,0,.025);
+  border:1px dashed rgba(0,0,0,.08);
 }
 
 @media (max-width:768px){
