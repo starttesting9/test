@@ -1027,6 +1027,10 @@ html:not(.dark) .orders-list:hover::-webkit-scrollbar-thumb{
   animation:fadeInUp .22s ease;
 }
 
+.social-list .detail-value{
+  display:block;
+}
+
 .orders-list::-webkit-scrollbar{
   width:4px;
 }
@@ -1295,6 +1299,8 @@ html.dark .social-photo-placeholder{
   margin-right:16px;
   margin-bottom:10px;
   opacity:1;
+  display:block;
+  flex-shrink:0;
 }
 
 html:not(.dark) .social-photo-placeholder{
