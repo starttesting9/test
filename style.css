@@ -1253,17 +1253,6 @@ html.dark .order-link{
   color:#93c5fd;
 }
 
-.social-btn.has-data::after{
-  content:'';
-  width:7px;
-  height:7px;
-  border-radius:50%;
-  background:#22c55e;
-  position:absolute;
-  top:6px;
-  right:6px;
-}
-
 .social-block{
   overflow:hidden;
 }
@@ -1300,6 +1289,21 @@ html.dark .social-photo-placeholder{
     0 4px 14px rgba(0,0,0,.18);
 }
 
+.social-photo-placeholder{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  color:var(--text-soft);
+
+  font-size:32px;
+  font-weight:600;
+
+  text-align:center;
+
+  overflow:hidden;
+}
+
 @media (max-width:768px){
 
   .social-layout{
@@ -1308,15 +1312,15 @@ html.dark .social-photo-placeholder{
 
   .social-photo,
   .social-photo-placeholder{
-    width:68px;
-    height:90px;
+    width:95px;
+    height:125px;
 
     border-radius:10px;
 
     float:left;
     display:block;
 
-    margin-right:12px;
+    margin-right:10px;
     margin-bottom:8px;
   }
 
