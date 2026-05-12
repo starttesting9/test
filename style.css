@@ -1298,7 +1298,10 @@ html.dark .social-photo-placeholder{
 }
 
 .social-photo-placeholder::after{
-  content:'📷';
+  content:'Немає фото';
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:.4px;
 
   width:100%;
   height:100%;
