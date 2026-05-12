@@ -1023,9 +1023,7 @@ html:not(.dark) .orders-list:hover::-webkit-scrollbar-thumb{
 
 .social-list{
   margin-top:14px;
-  display:flex;
-  flex-direction:column;
-  gap:2px;
+  display:block;
   animation:fadeInUp .22s ease;
 }
 
@@ -1303,6 +1301,10 @@ html.dark .order-link{
 
 .social-block{
   overflow:hidden;
+}
+
+.social-list{
+  display:block;
 }
 
 .social-photo,
