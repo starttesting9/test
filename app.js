@@ -611,9 +611,7 @@ function renderSocialHTML(social) {
               alt="Фото">
           `
           : `
-            <div class="social-photo-placeholder">
-              Фото
-            </div>
+            <div class="social-photo-placeholder"></div>
           `
       }
 
