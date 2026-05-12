@@ -1025,6 +1025,11 @@ html:not(.dark) .orders-list:hover::-webkit-scrollbar-thumb{
   margin-top:14px;
   display:block;
   animation:fadeInUp .22s ease;
+  overflow:hidden;
+}
+
+.social-list .detail-value{
+  display:block;
 }
 
 .orders-list::-webkit-scrollbar{
