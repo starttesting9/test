@@ -1264,47 +1264,8 @@ html.dark .order-link{
   right:6px;
 }
 
-.social-photo{
-  width:100px;
-  height:135px;
-
-  object-fit:cover;
-
-  border-radius:12px;
-
-  border:1px solid rgba(255,255,255,.08);
-
-  box-shadow:
-    0 4px 14px rgba(0,0,0,.18);
-
-  background:#1e293b;
-}
-
-.social-photo-placeholder{
-  width:100px;
-  height:135px;
-
-  border-radius:12px;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:34px;
-
-  background:rgba(255,255,255,.04);
-
-  border:1px dashed rgba(255,255,255,.08);
-
-  opacity:.55;
-}
-
 .social-block{
   overflow:hidden;
-}
-
-.social-list{
-  display:block;
 }
 
 .social-photo,
@@ -1340,6 +1301,11 @@ html.dark .order-link{
     width:72px;
     height:96px;
     border-radius:10px;
+
+    float:none;
+    display:block;
+
+    margin:0 auto 14px auto;
   }
 
   .social-photo-placeholder{
