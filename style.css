@@ -1299,7 +1299,6 @@ html.dark .social-photo-placeholder{
 
 .social-photo-placeholder::after{
   content:'Немає фото';
-  height:100%;
 
   display:flex;
   align-items:center;
@@ -1312,7 +1311,7 @@ html.dark .social-photo-placeholder{
   opacity:.2;
 
   text-align:center;
-  padding:4px;
+  padding:48px;
 }
 
 html:not(.dark) .social-photo-placeholder{
