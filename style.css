@@ -1314,7 +1314,7 @@ html.dark .social-photo-placeholder{
   opacity:.22;
 
   text-align:center;
-  padding:8px;
+  padding:4px;
 }
 
 html:not(.dark) .social-photo-placeholder{
