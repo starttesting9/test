@@ -592,7 +592,7 @@ function renderSocialHTML(social) {
 
   if (match?.[1]) {
     photoUrl =
-      `https://drive.google.com/thumbnail?id=${match[1]}&sz=w400`;
+      `https://lh3.googleusercontent.com/d/${match[1]}=w400`;
   }
 
   const filteredEntries =
