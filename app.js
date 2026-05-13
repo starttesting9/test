@@ -456,7 +456,11 @@ function render(items, append = false) {
           🗂️ Соц. дані
         </button>
       
-        <button class="copy-all-btn" style="display:none;">
+        <button
+          class="copy-all-btn"
+          style="display:none;"
+          title="Копіювати"
+        >
           📋
         </button>
       </div>
