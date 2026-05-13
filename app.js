@@ -849,7 +849,7 @@ function toggle(btn, mode = 'details') {
 
   if (mode === 'social') {
 
-    copyBtn.style.display = 'none';
+    copyBtn.style.display = 'inline-block';
 
     if (item.socialLoaded) {
 
