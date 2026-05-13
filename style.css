@@ -114,8 +114,8 @@ html.dark .detail-value{
 }
 
 html.dark .copy-all-btn{
-  background:#16a34a;
-  color:white;
+  background:#dff5e7;
+  color:#1f5132;
   border:none;
   box-shadow:none;
 }
@@ -509,8 +509,8 @@ button {
 }
 
 .copy-all-btn {
-  background:#22c55e;
-  color:white;
+  background:#2d4d3a;
+  color:#d7fbe8;
   box-shadow:none;
   min-width:40px;
   padding:7px 10px;
@@ -1157,8 +1157,8 @@ html.dark .order-card:hover{
 
   .action-btn,
   .copy-all-btn{
-    padding:7px 10px;
-    font-size:12px;
+    padding:7px 7px;
+    font-size:11px;
   }
 }
 
