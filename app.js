@@ -457,7 +457,7 @@ function render(items, append = false) {
         </button>
       
         <button class="copy-all-btn" style="display:none;">
-          📋 Копіювати
+          📋
         </button>
       </div>
     
