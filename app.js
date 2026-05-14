@@ -853,7 +853,11 @@ function toggle(btn, mode = 'details') {
 
   if (mode === 'social') {
 
-    copyBtn.style.display = 'inline-block';
+    if (item.socialLoaded && !item.social?.found) {
+      copyBtn.style.display = 'none';
+    } else {
+      copyBtn.style.display = 'inline-block';
+    }
 
     if (item.socialLoaded) {
 
@@ -888,6 +892,12 @@ function toggle(btn, mode = 'details') {
         item.social = social;
         item.socialLoaded = true;
         item.socialLoading = false;
+
+        if (social?.found) {
+          copyBtn.style.display = 'inline-block';
+        } else {
+          copyBtn.style.display = 'none';
+        }
 
         const socialBtn =
           card.querySelector('.social-btn');
