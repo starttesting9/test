@@ -461,7 +461,7 @@ function render(items, append = false) {
           style="display:none;"
           title="Копіювати все"
         >
-          📋
+          <span class="copy-icon">📋</span>
         </button>
       </div>
     
