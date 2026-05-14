@@ -129,6 +129,10 @@ html.dark .copy-btn:hover{
   background:#31415f;
 }
 
+html.dark .copy-all-btn:hover{
+  background:#41557a;
+}
+
 html.dark .theme-toggle{
   background:rgba(20,30,50,.7);
   border:1px solid rgba(255,255,255,.08);
@@ -1348,12 +1352,10 @@ html:not(.dark) .social-photo-placeholder{
   }
   
   .copy-btn{
-    width:30px;
-    height:30px;
+    padding:5px 6px;
+    font-size:11px;
   
-    font-size:12px;
-    padding:0;
-  
+    min-width:28px;
     border-radius:8px;
   }
 
