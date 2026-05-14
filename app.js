@@ -1174,8 +1174,10 @@ document.addEventListener('click', function(e) {
   }
 
   // копіювання ВСЬОГО блоку
-  if (e.target.classList.contains('copy-all-btn')) {
-    const wrapper = e.target.parentElement;
+  const copyAllBtn = e.target.closest('.copy-all-btn');
+
+  if (copyAllBtn) {
+    const wrapper = copyAllBtn.parentElement;
     const details = wrapper.nextElementSibling;
 
     const rows = details.querySelectorAll('.detail-row');
