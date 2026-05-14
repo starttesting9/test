@@ -518,7 +518,7 @@ function renderOrdersHTML(orders) {
   if (!orders || !orders.length) {
     return `
       <div class="orders-empty">
-        📭 Дані по стройових наказах відсутні
+        📭 Дані відсутні
       </div>
     `;
   }
