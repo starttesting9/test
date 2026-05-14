@@ -114,10 +114,9 @@ html.dark .detail-value{
 }
 
 html.dark .copy-all-btn{
-  background:#dff5e7;
-  color:#1f5132;
-  border:none;
-  box-shadow:none;
+  background:#24324d;
+  color:#dbe4ef;
+  border:1px solid rgba(255,255,255,.08);
 }
 
 html.dark .copy-all-btn:hover{
@@ -508,12 +507,17 @@ button {
   color:#2c3e50;
 }
 
-.copy-all-btn {
-  background:#2d4d3a;
-  color:#d7fbe8;
-  box-shadow:none;
-  min-width:40px;
-  padding:7px 10px;
+.copy-all-btn{
+  background:var(--chip-bg);
+  color:var(--text);
+  border:1px solid var(--border);
+
+  min-width:38px;
+  padding:7px 9px;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
 }
 
 .dash-card {
@@ -1159,6 +1163,7 @@ html.dark .order-card:hover{
   .copy-all-btn{
     padding:7px 7px;
     font-size:11px;
+    flex-shrink:0;
   }
 }
 
