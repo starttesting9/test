@@ -114,7 +114,7 @@ html.dark .detail-value{
 }
 
 html.dark .copy-all-btn{
-  background:#24324d;
+  background:#31415f;
   color:#dbe4ef;
   border:1px solid rgba(255,255,255,.08);
 }
@@ -514,6 +514,10 @@ button {
   display:flex;
   align-items:center;
   justify-content:center;
+}
+
+.copy-all-btn:hover{
+  background:#dde6f2;
 }
 
 .dash-card {
@@ -1160,9 +1164,6 @@ html.dark .order-card:hover{
     font-size:11px;
     flex-shrink:0;
   }
-  .button {
-    font-size:10px;
-  }
 }
 
 .card,
@@ -1344,5 +1345,19 @@ html:not(.dark) .social-photo-placeholder{
   .social-photo-placeholder{
     font-size:24px;
     margin-right:14px;
+  }
+  
+  .copy-btn{
+    width:30px;
+    height:30px;
+  
+    font-size:12px;
+    padding:0;
+  
+    border-radius:8px;
+  }
+
+  .detail-value{
+    gap:8px;
   }
 }
