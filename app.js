@@ -392,7 +392,6 @@ function getRankImage(item) {
   return '';
 }
 
-// рендер
 function render(items, append = false) {
   const list = document.getElementById('list');
   
