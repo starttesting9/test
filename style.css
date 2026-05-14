@@ -119,10 +119,6 @@ html.dark .copy-all-btn{
   border:1px solid rgba(255,255,255,.08);
 }
 
-html.dark .copy-all-btn:hover{
-  background:#22c55e;
-}
-
 html.dark .copy-btn{
   background:#24324d;
   color:#dbe4ef;
@@ -512,7 +508,7 @@ button {
   color:var(--text);
   border:1px solid var(--border);
 
-  min-width:38px;
+  min-width:32px;
   padding:7px 9px;
 
   display:flex;
