@@ -1161,6 +1161,9 @@ html.dark .order-card:hover{
     font-size:11px;
     flex-shrink:0;
   }
+  .button {
+    font-size:10px;
+  }
 }
 
 .card,
