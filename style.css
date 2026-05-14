@@ -493,13 +493,18 @@ button {
   padding:6px 8px;
   font-size:13px;
   border:none;
-  border-radius:5px;
+  border-radius:10px;
   cursor:pointer;
 }
 
 .button-group {
   display:flex;
   gap:8px;
+}
+
+.copy-icon{
+  font-size:15px;
+  line-height:1;
 }
 
 .toggle-btn {
@@ -1357,6 +1362,10 @@ html:not(.dark) .social-photo-placeholder{
   
     min-width:28px;
     border-radius:8px;
+  }
+
+  .copy-icon{
+    font-size:16px;
   }
 
   .detail-value{
