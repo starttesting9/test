@@ -1393,7 +1393,7 @@ html:not(.dark) .orders-empty{
 .session-modal{
   position:fixed;
   inset:0;
-  width:320px;
+
   background:rgba(0,0,0,.45);
   backdrop-filter:blur(4px);
 
@@ -1410,7 +1410,7 @@ html:not(.dark) .orders-empty{
 }
 
 .session-modal-content{
-  width:min(90%, 340px);
+  width:min(90%, 320px);
 
   background:var(--card-bg);
 
