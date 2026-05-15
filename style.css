@@ -1389,3 +1389,75 @@ html:not(.dark) .orders-empty{
     gap:8px;
   }
 }
+
+.session-modal{
+  position:fixed;
+  inset:0;
+
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(4px);
+
+  display:none;
+
+  align-items:center;
+  justify-content:center;
+
+  z-index:99999;
+}
+
+.session-modal.show{
+  display:flex;
+}
+
+.session-modal-content{
+  width:min(90%, 340px);
+
+  background:var(--card-bg);
+
+  border:1px solid var(--border);
+
+  border-radius:16px;
+
+  padding:18px;
+
+  box-shadow:0 12px 40px rgba(0,0,0,.25);
+
+  animation:fadeInUp .18s ease;
+}
+
+.session-title{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.session-text{
+  font-size:14px;
+  line-height:1.5;
+  color:var(--text-soft);
+}
+
+.session-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  margin-top:18px;
+}
+
+.session-btn{
+  padding:8px 14px;
+  border-radius:10px;
+  border:none;
+  cursor:pointer;
+  font-weight:600;
+}
+
+.session-btn.cancel{
+  background:var(--chip-bg);
+  color:var(--text);
+}
+
+.session-btn.confirm{
+  background:#2563eb;
+  color:white;
+}
