@@ -221,7 +221,7 @@ function renderBirthdays(items) {
   const otherHTML = `
     <div style="
       background:transparent;
-      padding:8px 10px 4px 0;
+      padding:8px 2px 4px;
     ">
   
       <div onclick="toggleDay(this)" class="bd-header">
