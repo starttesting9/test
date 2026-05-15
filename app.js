@@ -649,6 +649,10 @@ function renderSocialHTML(social) {
   `;
 }
 
+function handleExpiredSession() {
+  showSessionModal();
+}
+
 async function fetchOrders(pib) {
   const res = await fetch(
     'https://script.google.com/macros/s/AKfycbxaGJM3J0JmOBoKe5GwwnKNt4vtuQi5TUn_EVky0KUHlZhq6DoWcIyrc6fQ19JIeElV3w/exec',
@@ -671,8 +675,7 @@ async function fetchOrders(pib) {
     if (
       result.error.includes('Token verification')
     ) {
-      alert('🔒 Сесія завершилась. Оновіть сторінку.');
-      location.reload();
+      handleExpiredSession();
       return null;
     }
 
@@ -700,14 +703,14 @@ async function fetchSocial(pib) {
 
   const result = await res.json();
 
-  if (result.error) {
-    throw new Error(result.error);
-  }
-
-  return result.social || {
-    found: false,
-    data: {}
-  };
+  if (
+    result.error.includes('Token verification')
+  ) {
+    handleExpiredSession();
+    return {
+      found: false,
+      data: {}
+    };
 }
 
 async function switchDetailsContent(details, html) {
@@ -1244,4 +1247,27 @@ function initTheme(){
       dark ? '☀️' : '🌙';
   };
 }
+
+function showSessionModal() {
+
+  const modal =
+    document.getElementById('sessionModal');
+
+  modal.classList.add('show');
+
+  const confirmBtn =
+    modal.querySelector('.confirm');
+
+  const cancelBtn =
+    modal.querySelector('.cancel');
+
+  confirmBtn.onclick = () => {
+    location.reload();
+  };
+
+  cancelBtn.onclick = () => {
+    modal.classList.remove('show');
+  };
+}
+  
 initTheme();
