@@ -703,19 +703,23 @@ async function fetchSocial(pib) {
 
   const result = await res.json();
 
-  if (
-    result.error &&
-    result.error.includes('Token verification')
-  ) {
-    handleExpiredSession();
+  if (result.error) {
 
-    return {
-      found: false,
-      data: {}
-    };
+    if (
+      result.error.includes('Token verification')
+    ) {
+      handleExpiredSession();
+
+      return null;
+    }
+
+    throw new Error(result.error);
   }
 
-  return result;
+  return result.social || {
+    found: false,
+    data: {}
+  };
 }
 
 async function switchDetailsContent(details, html) {
