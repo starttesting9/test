@@ -1164,7 +1164,7 @@ html.dark .order-card:hover{
 
 @media (max-width:768px){
   .button-group{
-    gap:6px;
+    gap:4px;
   }
 
   .action-btn,
