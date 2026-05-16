@@ -335,7 +335,7 @@ function toggleDay(el) {
 
     content.classList.add('open');
 
-    ontent.style.maxHeight = '260px';
+    content.style.maxHeight = '260px';
     content.style.overflowY = 'auto';
 
     arrow.style.transform = 'rotate(180deg)';
