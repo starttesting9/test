@@ -324,7 +324,7 @@ function toggleDay(el) {
 
   if (isOpen) {
 
-    content.style.maxHeight = '0px';
+    content.style.height = '0px';
     content.style.overflowY = 'hidden';
 
     content.classList.remove('open');
@@ -335,7 +335,7 @@ function toggleDay(el) {
 
     content.classList.add('open');
 
-    content.style.maxHeight = '260px';
+    content.style.height = '260px';
     content.style.overflowY = 'auto';
 
     arrow.style.transform = 'rotate(180deg)';
