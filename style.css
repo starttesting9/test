@@ -679,7 +679,7 @@ button {
 }
 
 .bd-content{
-  height:0;
+  max-height:0;
   overflow:hidden;
   transition:max-height .25s ease;
   text-align:left;
@@ -795,7 +795,7 @@ button {
 }
 
 .today-list.open {
-  max-height: 180px; 
+  height: 180px; 
   overflow-y: auto;
 }
 
