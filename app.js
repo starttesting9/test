@@ -279,38 +279,6 @@ function expandToday(el) {
   el.remove();
 }
 
-// function toggleDay(el) {
-//   const content = el.nextElementSibling;
-//   const arrow = el.querySelector('.bd-arrow');
-
-//   const isOpen = content.classList.contains('open');
-
-//   if (isOpen) {
-//     content.style.height = content.scrollHeight + 'px';
-  
-//     requestAnimationFrame(() => {
-//       content.style.height = '0px';
-//       content.style.overflowY = 'hidden';  
-//     });
-  
-//     content.classList.remove('open');
-//     arrow.style.transform = 'rotate(0deg)';
-  
-//   } else {
-//     const fullHeight = content.scrollHeight;
-  
-//     content.style.height = '0px';
-  
-//     requestAnimationFrame(() => {
-//       content.style.height = Math.min(fullHeight, 260) + 'px';
-//       content.style.overflowY = 'auto';   
-//     });
-  
-//     content.classList.add('open');
-//     arrow.style.transform = 'rotate(180deg)';
-//   }
-// }
-
 function toggleDay(el) {
 
   const content =
@@ -335,7 +303,7 @@ function toggleDay(el) {
 
     content.classList.add('open');
 
-    content.style.maxHeight = '260px';
+    content.style.maxHeight = '200px';
     content.style.overflowY = 'auto';
 
     arrow.style.transform = 'rotate(180deg)';
